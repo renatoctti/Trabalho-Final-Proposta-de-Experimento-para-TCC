@@ -1,21 +1,88 @@
-# Trabalho-Final-Proposta-de-Experimento-para-TCC
+# Plano de Experimento – Código Comentado vs Auto-explicativo
 
 ## 1. Identificação Básica
 
- Título do experimento:
+### 1.1 Título do Experimento
 **Código com Comentários vs. Código Auto-explicativo: Impacto na Manutenibilidade e Compreensão por Desenvolvedores**
 
- Autores
- [Renato Cazzoletti] - Engenharia de Software - [renato.cazzoletti7@gmail.com]
+### 1.2 ID / Código do Projeto
+EXP-CODE-MAINT-2025
 
- Projeto / produto / iniciativa relacionada
-Trabalho de Conclusão de Curso (TCC) - Análise de práticas de documentação e legibilidade de código em engenharia de software
+### 1.3 Versão do Documento
+**Versão:** 1.0  
+**Data de Criação:** 23/11/2025
+**Última Atualização:** 23/11/2025
+
+### 1.4 Autores
+- Nome: [Renato Cazzoletti]
+- E-mail: [renato.cazzoletti7@gmail.com]
+
+### 1.5 Projeto Relacionado
+Trabalho de Conclusão de Curso (TCC) em Engenharia de Software - Linha de pesquisa em Qualidade de Software e Manutenibilidade de Código
 
 ---
 
-# Plano de Experimento – Código Comentado vs Auto-explicativo
+## 2. Contexto e Problema
 
-## 1. Template do Escopo (Goal Template - GQM)
+### 2.1 Descrição do Problema / Oportunidade
+
+A manutenibilidade de código é reconhecida como um dos principais desafios na engenharia de software moderna. Estudos indicam que desenvolvedores gastam entre 60% a 70% do tempo total de desenvolvimento em atividades de compreensão de código existente, incluindo leitura, análise e navegação em bases de código.
+
+**Problema Central:** Existe um debate contínuo e não resolvido na comunidade de desenvolvimento de software sobre qual abordagem de documentação é mais eficaz:
+- **Abordagem 1:** Uso extensivo de comentários explicativos no código
+- **Abordagem 2:** Código "auto-explicativo" através de nomes descritivos e estruturas claras (Clean Code)
+- **Realidade:** Muitos projetos apresentam código mal documentado com ambas as deficiências
+
+**Sintomas Observados:**
+- Tempo excessivo gasto em compreensão de código durante manutenção
+- Alta taxa de erros introduzidos durante modificações
+- Frustração de desenvolvedores ao trabalhar com código legado
+- Debates inconclusivos em code reviews sobre necessidade de comentários
+
+**Oportunidade de Pesquisa:**
+Realizar um estudo empírico controlado para identificar, com evidências quantitativas e qualitativas, qual estratégia de documentação resulta em:
+- Melhor compreensão do código
+- Modificações mais rápidas e corretas
+- Menor carga cognitiva para desenvolvedores
+- Maior confiança e satisfação
+
+### 2.2 Contexto Organizacional e Técnico
+
+**Ambiente do Experimento:**
+- **Tipo:** Ambiente acadêmico e profissional de desenvolvimento
+- **Domínio:** Desenvolvimento de software orientado a objetos
+- **Tecnologias:** Python 3.x, ambientes de desenvolvimento modernos (VS Code, PyCharm)
+- **Tipo de Sistema:** Sistema de gerenciamento de tarefas (To-Do List)
+- **Complexidade:** Código de complexidade média (150-200 linhas por versão)
+- **Processo:** Simulação de tarefas típicas de manutenção de software
+
+**Contexto Técnico:**
+- Código implementado seguindo princípios de programação orientada a objetos
+- Presença de testes unitários para validação de modificações
+- Uso de ferramentas de análise estática de código (pylint, flake8)
+- Ambiente controlado de experimentação
+
+### 2.3 Trabalhos e Evidências Prévias
+
+**Literatura Acadêmica Relevante:**
+- **Clean Code (Robert Martin, 2008):** Defende código auto-explicativo com comentários mínimos
+- **Code Complete (Steve McConnell, 2004):** Argumenta por uso balanceado e estratégico de comentários
+- **Estudos Empíricos:**
+  - Buse & Weimer (2010): Métricas de legibilidade de código
+  - Scalabrino et al. (2017): Impacto de nomes de identificadores na compreensão
+  - Fakhoury & Arnaoudova (2021): Papel dos comentários na manutenibilidade
+
+**Evidências da Indústria:**
+- Debates contínuos em plataformas (Stack Overflow, Reddit r/programming)
+- Diretrizes conflitantes em diferentes projetos open-source
+- Variação significativa em práticas entre organizações
+
+**Lacuna Identificada:**
+Poucos estudos empíricos controlados comparando diretamente as três abordagens (comentado, auto-explicativo, mal documentado) em contexto de manutenção real.
+
+---
+
+## 3. Template do Escopo (Goal Template - GQM)
 
 **Analisar** diferentes estratégias de documentação de código (código com comentários abundantes, código auto-explicativo com nomes descritivos, e código mal documentado)
 
@@ -29,7 +96,7 @@ Trabalho de Conclusão de Curso (TCC) - Análise de práticas de documentação 
 
 ---
 
-## 2. Objetivos Específicos
+## 4. Objetivos Específicos
 
 **O1 - Compreensão de Código:** Avaliar o impacto das diferentes estratégias de documentação (comentários vs. nomes descritivos vs. código mal documentado) no tempo necessário para desenvolvedores compreenderem a funcionalidade do código-fonte e na precisão dessa compreensão.
 
@@ -41,7 +108,7 @@ Trabalho de Conclusão de Curso (TCC) - Análise de práticas de documentação 
 
 ---
 
-## 3. Tabela GQM - Goal/Question/Metric
+## 5. Tabela GQM - Goal/Question/Metric
 
 | **Objetivo** | **Pergunta de Pesquisa** | **Métricas Associadas** |
 |--------------|--------------------------|-------------------------|
@@ -60,7 +127,7 @@ Trabalho de Conclusão de Curso (TCC) - Análise de práticas de documentação 
 
 ---
 
-## 4. Tabela Completa de Métricas
+## 6. Tabela Completa de Métricas
 
 | **ID** | **Nome da Métrica** | **Descrição Detalhada** | **Unidade de Medida** |
 |--------|---------------------|-------------------------|----------------------|
@@ -87,7 +154,173 @@ Trabalho de Conclusão de Curso (TCC) - Análise de práticas de documentação 
 
 ---
 
-## 5. Contexto das Versões de Código
+## 7. Stakeholders e Impacto Esperado
+
+### 7.1 Stakeholders Principais
+
+**Stakeholder 1 - Pesquisadores e Acadêmicos**
+- **Interesse:** Avanço do conhecimento científico sobre manutenibilidade de código
+- **Expectativa:** Dados empíricos robustos e publicação de resultados
+- **Impacto:** Contribuição para área de Engenharia de Software Experimental
+
+**Stakeholder 2 - Desenvolvedores Participantes**
+- **Interesse:** Aprendizado sobre melhores práticas de documentação
+- **Expectativa:** Experiência educacional e feedback sobre suas habilidades
+- **Impacto:** 2-3 horas de tempo investido, possível ganho de conhecimento
+
+**Stakeholder 3 - Líderes Técnicos e Gerentes de Desenvolvimento**
+- **Interesse:** Evidências para embasar decisões sobre padrões de código
+- **Expectativa:** Diretrizes práticas baseadas em dados para suas equipes
+- **Impacto:** Possível mudança em políticas de documentação e code review
+
+**Stakeholder 4 - Educadores e Instrutores**
+- **Interesse:** Material didático sobre qualidade de código
+- **Expectativa:** Resultados que possam ser ensinados a estudantes
+- **Impacto:** Influência em currículo de disciplinas de engenharia de software
+
+**Stakeholder 5 - Comunidade de Desenvolvimento de Software**
+- **Interesse:** Resolução de debate histórico sobre comentários
+- **Expectativa:** Resposta baseada em evidências, não em opiniões
+- **Impacto:** Influência em práticas e cultura de desenvolvimento
+
+### 7.2 Interesses e Expectativas Detalhados
+
+| Stakeholder | Interesse Principal | Expectativa de Resultado | Nível de Impacto |
+|-------------|---------------------|--------------------------|------------------|
+| Pesquisadores | Publicação científica | Dados válidos e análises rigorosas | Alto |
+| Desenvolvedores | Aprendizado pessoal | Experiência prática e feedback | Médio |
+| Líderes Técnicos | Diretrizes práticas | Recomendações aplicáveis | Alto |
+| Educadores | Material didático | Casos de ensino baseados em evidências | Médio |
+| Comunidade | Esclarecimento técnico | Resolução de controvérsia | Baixo-Médio |
+
+### 7.3 Impactos Potenciais no Processo e Produto
+
+**Durante a Execução do Experimento:**
+- **Tempo dos participantes:** Investimento de 2-3 horas por participante
+- **Recursos computacionais:** Uso de laboratórios ou ambientes remotos
+- **Curva de aprendizado:** Possível ganho de conhecimento para participantes
+- **Impacto emocional:** Possível frustração temporária com código mal documentado (Versão C)
+
+**Após a Conclusão do Experimento:**
+- **Políticas de código:** Possível revisão de guidelines de documentação em organizações
+- **Práticas de code review:** Mudanças em critérios de avaliação de qualidade
+- **Treinamento:** Incorporação de resultados em programas de capacitação
+- **Ferramentas:** Possível desenvolvimento de ferramentas baseadas nos achados
+- **Pesquisas futuras:** Base para estudos subsequentes e replicações
+
+---
+
+## 8. Riscos de Alto Nível, Premissas e Critérios de Sucesso
+
+### 8.1 Riscos de Alto Nível
+
+#### Riscos de Negócio/Acadêmicos
+| ID | Risco | Probabilidade | Impacto | Mitigação |
+|----|-------|---------------|---------|-----------|
+| R1 | Resultados estatisticamente não significativos | Média | Alto | Cálculo de poder estatístico a priori, amostra adequada |
+| R2 | Baixa taxa de recrutamento de participantes | Média | Alto | Múltiplos canais de divulgação, incentivos apropriados |
+| R3 | Viés de seleção (apenas participantes motivados) | Alta | Médio | Documentar características da amostra, análise de sensibilidade |
+| R4 | Impossibilidade de publicação dos resultados | Baixa | Alto | Pré-registro do experimento, protocolo rigoroso |
+
+#### Riscos Técnicos
+| ID | Risco | Probabilidade | Impacto | Mitigação |
+|----|-------|---------------|---------|-----------|
+| R5 | Falhas no ambiente de execução durante sessões | Média | Alto | Ambiente de backup, testes prévios, piloto |
+| R6 | Perda de dados coletados | Baixa | Muito Alto | Backup automático, redundância de armazenamento |
+| R7 | Instrumentação inadequada (métricas incorretas) | Média | Alto | Piloto para validar instrumentos, revisão por pares |
+| R8 | Problemas com gravação de métricas automáticas | Média | Médio | Logs redundantes, coleta manual como backup |
+
+#### Riscos Operacionais
+| ID | Risco | Probabilidade | Impacto | Mitigação |
+|----|-------|---------------|---------|-----------|
+| R9 | Desistência de participantes durante experimento | Média | Médio | Sessões curtas, ambiente confortável, comunicação clara |
+| R10 | Tempo insuficiente para completar tarefas | Baixa | Médio | Piloto para calibrar tempo, tarefas ajustadas |
+| R11 | Variabilidade excessiva entre participantes | Alta | Médio | Bloqueio por experiência, coleta de covariáveis |
+| R12 | Problemas éticos não previstos | Baixa | Alto | Revisão por comitê de ética, consentimento informado |
+
+### 8.2 Premissas
+
+**Premissas Técnicas:**
+1. Participantes possuem conhecimento básico de Python (mínimo 6 meses de experiência)
+2. Ambiente de desenvolvimento está configurado e funcional para todos os participantes
+3. Testes unitários fornecidos são corretos e representativos
+4. Métricas automáticas podem ser coletadas de forma confiável
+
+**Premissas Organizacionais:**
+5. Participantes têm disponibilidade de 2-3 horas contínuas
+6. Não haverá interrupções significativas durante as sessões experimentais
+7. Recursos computacionais (laboratório ou equipamento remoto) estarão disponíveis
+8. Aprovação do comitê de ética será obtida antes da execução
+
+**Premissas de Contexto:**
+9. O código de 150-200 linhas é representativo de tarefas reais de manutenção
+10. Participantes estarão suficientemente motivados para realizar as tarefas com seriedade
+11. Ambiente controlado permite isolamento de variáveis externas
+12. Resultados em Python podem ser generalizados para outras linguagens similares
+
+### 8.3 Critérios de Sucesso Globais
+
+#### Critérios Quantitativos (Go/No-Go)
+
+**O experimento será considerado BEM-SUCEDIDO se:**
+
+ **Critério 1 - Tamanho de Amostra:**
+- Mínimo de 24 participantes completam o experimento (8 por grupo)
+- Meta ideal: 30 participantes (10 por grupo)
+
+ **Critério 2 - Completude de Dados:**
+- Pelo menos 80% dos participantes fornecem dados completos para todas as métricas principais
+- Taxa de perda de dados inferior a 20%
+
+ **Critério 3 - Significância Estatística:**
+- Identificação de diferenças estatisticamente significativas (p < 0.05) em pelo menos 3 das métricas principais (M1, M6, M16, M11)
+- Poder estatístico observado ≥ 0.70
+
+ **Critério 4 - Taxa de Conclusão:**
+- Pelo menos 75% dos participantes completam todas as três tarefas (compreensão, modificação, correção)
+- Taxa de desistência inferior a 25%
+
+ **Critério 5 - Validade do Instrumento:**
+- Feedback dos participantes indica que instruções foram claras (score médio ≥ 4 em escala 1-5)
+- Ausência de problemas técnicos críticos que invalidem dados
+
+#### Critérios Qualitativos
+
+ **Critério 6 - Consistência Interna:**
+- Métricas relacionadas apresentam correlações esperadas (ex: tempo e erros)
+- Ausência de contradições graves nos dados
+
+ **Critério 7 - Relevância Prática:**
+- Diferenças observadas têm magnitude praticamente relevante (effect size médio ou grande: d ≥ 0.5)
+- Resultados são interpretáveis e acionáveis
+
+### 8.4 Critérios de Parada Antecipada (Stop Criteria)
+
+**O experimento será INTERROMPIDO ANTES DO TÉRMINO se:**
+
+ **Critério de Parada 1 - Taxa de Desistência Crítica:**
+- Taxa de desistência ultrapassa 40% dos participantes recrutados
+- Indica problemas sérios no desenho ou execução
+
+ **Critério de Parada 2 - Falhas Técnicas Recorrentes:**
+- Mais de 30% das sessões são comprometidas por problemas técnicos
+- Instrumentação se mostra fundamentalmente defeituosa
+
+ **Critério de Parada 3 - Questões Éticas:**
+- Comitê de ética identifica riscos não previstos aos participantes
+- Participantes relatam desconforto ou estresse excessivo (score médio de frustração > 80)
+
+ **Critério de Parada 4 - Mudança de Contexto:**
+- Mudanças organizacionais ou tecnológicas tornam o experimento irrelevante
+- Recursos críticos se tornam indisponíveis por período prolongado (> 4 semanas)
+
+ **Critério de Parada 5 - Invalidação dos Dados:**
+- Descoberta de viés sistemático que compromete todos os dados coletados
+- Contaminação entre grupos (participantes compartilham informações sobre as versões)
+
+---
+
+## 9. Contexto das Versões de Código
 
 ### Versão A - Código Auto-explicativo
 - **Características:** Nomes de variáveis e funções altamente descritivos e semânticos
@@ -108,3 +341,4 @@ Trabalho de Conclusão de Curso (TCC) - Análise de práticas de documentação 
 - **Filosofia:** Exemplo de código de baixa qualidade (baseline para comparação)
 
 ---
+
