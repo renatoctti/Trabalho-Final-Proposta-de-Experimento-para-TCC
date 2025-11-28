@@ -87,7 +87,7 @@ Poucos estudos empíricos controlados comparando diretamente as três abordagens
 
 ---
 
-## 3.  Escopo 
+## 3. Template do Escopo (Goal Template - GQM)
 
 **Analisar** diferentes estratégias de documentação de código (código com comentários abundantes, código auto-explicativo com nomes descritivos, e código mal documentado)
 
@@ -103,7 +103,8 @@ Poucos estudos empíricos controlados comparando diretamente as três abordagens
 
 ## 4. Escopo e Contexto do Experimento
 
-### 4.1 Escopo Funcional / de Processo 
+### 4.1 Escopo Funcional / de Processo (Incluído e Excluído)
+
 
 **Atividades:**
 - Tarefa de compreensão de código (leitura e interpretação)
@@ -126,6 +127,7 @@ Poucos estudos empíricos controlados comparando diretamente as três abordagens
 - Desenvolvedores com experiência mínima de 1 ano em Python
 - Estudantes de pós-graduação em Computação
 - Profissionais júnior a pleno
+
 
 **Fora do Escopo:**
 - Sistemas completos de larga escala (apenas módulos de 150-200 linhas)
@@ -219,7 +221,7 @@ Poucos estudos empíricos controlados comparando diretamente as três abordagens
 
 ### 4.5 Limitações Previstas
 
-**Limitações de Validade Externa:**
+**Limitações de Validade Externa (Generalização):**
 
 **L1 - Contexto Artificial:**
 - Ambiente de laboratório difere significativamente de ambientes de produção reais
@@ -412,6 +414,7 @@ Poucos estudos empíricos controlados comparando diretamente as três abordagens
 
 #### Critérios Quantitativos (Go/No-Go)
 
+**O experimento será considerado BEM-SUCEDIDO se:**
 
  **Critério 1 - Tamanho de Amostra:**
 - Mínimo de 24 participantes completam o experimento (8 por grupo)
@@ -444,6 +447,8 @@ Poucos estudos empíricos controlados comparando diretamente as três abordagens
 - Resultados são interpretáveis e acionáveis
 
 ### 9.4 Critérios de Parada Antecipada (Stop Criteria)
+
+**O experimento será INTERROMPIDO ANTES DO TÉRMINO se:**
 
  **Critério de Parada 1 - Taxa de Desistência Crítica:**
 - Taxa de desistência ultrapassa 40% dos participantes recrutados
@@ -488,3 +493,4 @@ Poucos estudos empíricos controlados comparando diretamente as três abordagens
 - **Filosofia:** Exemplo de código de baixa qualidade (baseline para comparação)
 
 ---
+
