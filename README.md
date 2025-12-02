@@ -1,496 +1,989 @@
-# Plano de Experimento – Código Comentado vs Auto-explicativo
+# 1. Identificação Básica
 
-## 1. Identificação Básica
+## 1.1 Título do Experimento
+**Avaliação dos Efeitos de Três Versões de Código (A, B e C) sobre a Compreensão, Modificação e Correção em Manutenção de Software.**
 
-### 1.1 Título do Experimento
-**Código com Comentários vs. Código Auto-explicativo: Impacto na Manutenibilidade e Compreensão por Desenvolvedores**
+## 1.2 ID / Código do Estudo
+**EXP-MANUT-3VAR-2025**
 
-### 1.2 ID / Código do Projeto
-EXP-CODE-MAINT-2025-001
+## 1.3 Versão do Documento e Histórico de Revisão
+| Versão | Data | Alterações |
+|--------|-------|-------------|
+| v1.0 | 2025-11-23 | Primeira versão do plano |
+| v1.1 | 2025-11-28 |  Incrementação do plan0  |
+| v2.0 | 2025-12-01 | Finalização, fluxograma e tabelas |
 
-### 1.3 Versão do Documento
-**Versão:** 1.0  
-**Data de Criação:** 23/11/2025 
-**Última Atualização:** 23/11/2025
+## 1.4 Datas
+- **Criação:** 23/11/2025  
+- **Última atualização:** 1/12/2025  
 
-### 1.4 Autores
-- Nome: [Renato Cazzoletti]
-- Área: Engenharia de Software
-- E-mail: [renato.cazzoletti7@gmail.com]
-- Instituição: [Pontifícia Universidade Católica de Minas Gerais]
+## 1.5 Autores
+- **Renato Cazzoletti – Discente – Engenharia de Software**  
 
-### 1.5 Responsável Principal (PI)
-[Renato Cazzoletti] - Pesquisador Principal do Experimento
+## 1.6 Responsável Principal (PI)
+**Renato Cazzoletti**
 
-### 1.6 Projeto Relacionado
-Trabalho de Conclusão de Curso (TCC) em Engenharia de Software - Linha de pesquisa em Qualidade de Software e Manutenibilidade de Código
-
----
-
-## 2. Contexto e Problema
-
-### 2.1 Descrição do Problema / Oportunidade
-
-A manutenibilidade de código é reconhecida como um dos principais desafios na engenharia de software moderna. Estudos indicam que desenvolvedores gastam entre 60% a 70% do tempo total de desenvolvimento em atividades de compreensão de código existente, incluindo leitura, análise e navegação em bases de código.
-
-**Problema Central:** Existe um debate contínuo e não resolvido na comunidade de desenvolvimento de software sobre qual abordagem de documentação é mais eficaz:
-- **Abordagem 1:** Uso extensivo de comentários explicativos no código
-- **Abordagem 2:** Código "auto-explicativo" através de nomes descritivos e estruturas claras (Clean Code)
-- **Realidade:** Muitos projetos apresentam código mal documentado com ambas as deficiências
-
-**Sintomas Observados:**
-- Tempo excessivo gasto em compreensão de código durante manutenção
-- Alta taxa de erros introduzidos durante modificações
-- Frustração de desenvolvedores ao trabalhar com código legado
-- Debates inconclusivos em code reviews sobre necessidade de comentários
-
-**Oportunidade de Pesquisa:**
-Realizar um estudo empírico controlado para identificar, com evidências quantitativas e qualitativas, qual estratégia de documentação resulta em:
-- Melhor compreensão do código
-- Modificações mais rápidas e corretas
-- Menor carga cognitiva para desenvolvedores
-- Maior confiança e satisfação
-
-### 2.2 Contexto Organizacional e Técnico
-
-**Ambiente do Experimento:**
-- **Tipo:** Ambiente acadêmico e profissional de desenvolvimento
-- **Domínio:** Desenvolvimento de software orientado a objetos
-- **Tecnologias:** Python 3.x, ambientes de desenvolvimento modernos (VS Code, PyCharm)
-- **Tipo de Sistema:** Sistema de gerenciamento de tarefas (To-Do List)
-- **Complexidade:** Código de complexidade média (150-200 linhas por versão)
-- **Processo:** Simulação de tarefas típicas de manutenção de software
-
-**Contexto Técnico:**
-- Código implementado seguindo princípios de programação orientada a objetos
-- Presença de testes unitários para validação de modificações
-- Uso de ferramentas de análise estática de código (pylint, flake8)
-- Ambiente controlado de experimentação
-
-### 2.3 Trabalhos e Evidências Prévias
-
-**Literatura Acadêmica Relevante:**
-- **Clean Code (Robert Martin, 2008):** Defende código auto-explicativo com comentários mínimos
-- **Code Complete (Steve McConnell, 2004):** Argumenta por uso balanceado e estratégico de comentários
-- **Estudos Empíricos:**
-  - Buse & Weimer (2010): Métricas de legibilidade de código
-  - Scalabrino et al. (2017): Impacto de nomes de identificadores na compreensão
-  - Fakhoury & Arnaoudova (2021): Papel dos comentários na manutenibilidade
-
-**Evidências da Indústria:**
-- Debates contínuos em plataformas (Stack Overflow, Reddit r/programming)
-- Diretrizes conflitantes em diferentes projetos open-source
-- Variação significativa em práticas entre organizações
-
-**Lacuna Identificada:**
-Poucos estudos empíricos controlados comparando diretamente as três abordagens (comentado, auto-explicativo, mal documentado) em contexto de manutenção real.
+## 1.7 Projeto / Produto / Iniciativa Relacionada
+Este experimento compõe o **TCC de Engenharia de Software**, investigando fatores estruturais de código e sua influência na eficácia e eficiência de atividades de manutenção.
 
 ---
 
-## 3. Template do Escopo (Goal Template - GQM)
+# 2. Contexto e Problema
 
-**Analisar** diferentes estratégias de documentação de código (código com comentários abundantes, código auto-explicativo com nomes descritivos, e código mal documentado)
+## 2.1 Descrição do Problema / Oportunidade
+A manutenção de software representa entre **40% e 70% do custo total do ciclo de vida**.  
+Entretanto, práticas e padrões estruturais adotados pelas equipes variam bastante, impactando:
 
-**com o propósito de** avaliar e comparar seu impacto na manutenibilidade de software
+- tempo para compreender código  
+- esforço cognitivo  
+- taxa de erros  
+- produtividade  
+- qualidade do produto  
 
-**com respeito a** tempo de compreensão do código, eficiência na implementação de modificações, taxa de erros introduzidos, carga cognitiva percebida e satisfação do desenvolvedor
+Há uma lacuna na compreensão de como **diferentes estruturas de código** influenciam tarefas reais de manutenção.
 
-**do ponto de vista de** desenvolvedores de software com experiência prática em programação
+## 2.2 Contexto Organizacional e Técnico
+O experimento ocorrerá em ambiente acadêmico controlado, com:
 
-**no contexto de** tarefas típicas de manutenção de software (compreensão de funcionalidade, modificação evolutiva e correção de bugs) em sistemas orientados a objetos escritos em Python.
+- estudantes com experiência básica em programação  
+- máquinas com ambiente padronizado  
+- código em **Python**  
+- IDE recomendada (VS Code / PyCharm)  
+- suíte de testes automatizada  
+- scripts de logging  
+- três versões de código equivalentes funcionalmente, mas estruturadas de forma diferente
 
----
+## 2.3 Trabalhos e Evidências Prévias
+Base teórica fundamentada em:
 
-## 4. Escopo e Contexto do Experimento
+- Basili (manutenção e experimento empíricos)  
+- Wohlin (métodos experimentais em engenharia de software)  
+- Sommerville (engenharia de software e qualidade)  
+- Estudos que analisam impacto de legibilidade e modularidade na manutenção  
+- Pesquisas envolvendo refatoração e compreensibilidade  
 
-### 4.1 Escopo Funcional / de Processo (Incluído e Excluído)
+## 2.4 Referencial Teórico e Empírico Essencial
+Principais conceitos:
 
+- Teoria da Carga Cognitiva (Sweller)  
+- Engenharia de Manutenibilidade  
+- Princípios de design (SRP, modularidade, clareza, coesão)  
+- Código como artefato cognitivo  
+- Relação entre estrutura de código e desempenho humano  
 
-**Atividades:**
-- Tarefa de compreensão de código (leitura e interpretação)
-- Tarefa de modificação evolutiva (adicionar nova funcionalidade)
-- Tarefa de correção de bugs (identificar e corrigir defeito)
-
-**Artefatos:**
-- Código-fonte Python (3 versões do mesmo sistema)
-- Testes unitários pré-existentes
-- Descrições de tarefas padronizadas
-- Questionários de avaliação subjetiva (NASA-TLX, escalas Likert)
-
-**Métricas:**
-- Métricas de tempo (compreensão, modificação, localização)
-- Métricas de qualidade (complexidade, score de código)
-- Métricas de erros (lógicos, sintaxe, testes falhados)
-- Métricas subjetivas (carga cognitiva, confiança, frustração)
-
-**Participantes:**
-- Desenvolvedores com experiência mínima de 1 ano em Python
-- Estudantes de pós-graduação em Computação
-- Profissionais júnior a pleno
-
-
-**Fora do Escopo:**
-- Sistemas completos de larga escala (apenas módulos de 150-200 linhas)
-- Arquitetura de microsserviços ou sistemas distribuídos
-- Código legado extremamente complexo (> 1000 linhas)
-- Documentação externa ao código (README, wikis, diagramas)
-- Múltiplas linguagens de programação (apenas Python)
-- Código em domínios altamente especializados (ex: sistemas embarcados, real-time)
-- Trabalho colaborativo em equipe (apenas trabalho individual)
-- Ambientes de produção reais
-- Desenvolvedores sênior/especialistas (> 7 anos de experiência)
-- Desenvolvedores iniciantes (< 1 ano de experiência)
-
-### 4.2 Contexto do Estudo
-
-**Tipo de Organização:**
-- Ambiente acadêmico (universidade) para coleta de dados
-- Simulação de contexto profissional de desenvolvimento
-
-**Tipo de Projeto:**
-- Sistema de gerenciamento de tarefas (To-Do List)
-- Domínio: aplicação web comum, familiar à maioria dos desenvolvedores
-- Complexidade: média (estruturas de dados, lógica de negócio, persistência simulada)
-
-**Criticidade:**
-- Baixa - ambiente controlado sem impacto em sistemas reais
-- Sem pressão de prazos de produção
-- Foco em aprendizado e coleta de dados
-
-**Perfil de Experiência dos Participantes:**
-- **Júnior:** 1-3 anos de experiência em desenvolvimento
-- **Pleno:** 3-7 anos de experiência em desenvolvimento
-- Conhecimento obrigatório: Python, OOP, testes unitários
-- Familiaridade com IDEs modernas (VS Code, PyCharm)
-
-**Ambiente de Execução:**
-- Laboratório de computação ou ambiente remoto supervisionado
-- Sessões individuais de 90-120 minutos
-- Supervisão de pesquisador durante execução
-
-### 4.3 Premissas
-
-**Premissas Técnicas:**
-1. **P1:** Todos os participantes possuem conhecimento básico de Python (mínimo 6 meses de experiência prática)
-2. **P2:** Ambiente de desenvolvimento (IDE + Python + bibliotecas) está configurado e funcional
-3. **P3:** Testes unitários fornecidos são corretos, completos e representativos das funcionalidades
-4. **P4:** Ferramentas de coleta de métricas automáticas funcionam corretamente
-5. **P5:** Código de 150-200 linhas é representativo de tarefas reais de manutenção
-
-**Premissas de Disponibilidade:**
-6. **P6:** Participantes têm disponibilidade de 2-3 horas contínuas para o experimento
-7. **P7:** Recursos computacionais (laboratório ou equipamento pessoal) estarão disponíveis
-8. **P8:** Não haverá interrupções significativas durante as sessões experimentais
-9. **P9:** Conexão de internet estável (se sessões remotas)
-
-**Premissas Comportamentais:**
-10. **P10:** Participantes estarão suficientemente motivados para realizar as tarefas com seriedade
-11. **P11:** Participantes seguirão as instruções fornecidas
-12. **P12:** Participantes fornecerão respostas honestas nos questionários
-
-**Premissas Regulatórias:**
-13. **P13:** Aprovação do comitê de ética será obtida antes da execução
-14. **P14:** Participantes concordarão com termo de consentimento informado
-
-### 4.4 Restrições
-
-**Restrições de Tempo:**
-- **R1:** Experimento completo deve ser concluído em até 10 semanas (da preparação à coleta final)
-- **R2:** Cada sessão individual limitada a 120 minutos (restrição de atenção/fadiga)
-- **R3:** Coleta de dados deve ocorrer no período letivo (disponibilidade de participantes acadêmicos)
-
-**Restrições de Recursos:**
-- **R4:** Orçamento limitado - sem possibilidade de incentivos financeiros significativos
-- **R5:** Número limitado de participantes disponíveis (pool estimado de 40-50 pessoas)
-- **R6:** Disponibilidade de 1-2 pesquisadores para conduzir sessões
-
-**Restrições Tecnológicas:**
-- **R7:** Experimento limitado a uma única linguagem (Python 3.x)
-- **R8:** Dependência de ferramentas específicas (limitação de licenças de IDEs profissionais)
-- **R9:** Impossibilidade de eye-tracking real (uso de aproximações)
-- **R10:** Coleta de métricas automáticas depende de logs da IDE
-
-**Restrições Organizacionais:**
-- **R11:** Acesso limitado a desenvolvedores profissionais sênior
-- **R12:** Necessidade de aprovação institucional (comitê de ética, coordenação)
-- **R13:** Restrições de LGPD para coleta e armazenamento de dados pessoais
-
-**Restrições Metodológicas:**
-- **R14:** Não é possível randomizar completamente todos os fatores de confusão
-- **R15:** Impossibilidade de controlar completamente ambiente doméstico (sessões remotas)
-
-### 4.5 Limitações Previstas
-
-**Limitações de Validade Externa (Generalização):**
-
-**L1 - Contexto Artificial:**
-- Ambiente de laboratório difere significativamente de ambientes de produção reais
-- Ausência de pressão de prazos, interruções e contexto organizacional real
-- **Impacto:** Resultados podem não se aplicar totalmente a contextos de alta pressão
-
-**L2 - Tamanho e Complexidade do Código:**
-- Código de 150-200 linhas é menor que sistemas reais (geralmente milhares de linhas)
-- Complexidade média pode não representar código legado altamente complexo
-- **Impacto:** Efeitos podem ser diferentes em sistemas maiores e mais complexos
-
-**L3 - Linguagem Específica:**
-- Experimento limitado a Python
-- Resultados podem não generalizar para linguagens fortemente tipadas (Java, C#) ou funcionais (Haskell)
-- **Impacto:** Conclusões são específicas para linguagens dinâmicas similares
-
-**L4 - Domínio do Problema:**
-- Sistema To-Do List é domínio comum e familiar
-- Domínios especializados (financeiro, médico, científico) podem ter resultados diferentes
-- **Impacto:** Generalização limitada para domínios com vocabulário técnico específico
-
-**L5 - Perfil dos Participantes:**
-- Amostra de conveniência (estudantes + voluntários)
-- Viés de auto-seleção: participantes interessados em qualidade de código
-- Exclusão de desenvolvedores iniciantes (< 1 ano) e muito experientes (> 7 anos)
-- **Impacto:** Resultados mais aplicáveis a desenvolvedores júnior-pleno
-
-**L6 - Tarefas Específicas:**
-- Apenas 3 tipos de tarefas (compreensão, modificação evolutiva, correção de bug)
-- Não inclui: refatoração completa, otimização de performance, debug complexo
-- **Impacto:** Resultados podem variar para outros tipos de manutenção
-
-**L7 - Efeito Hawthorne:**
-- Participantes sabem que estão sendo observados/medidos
-- Podem se comportar de forma diferente do dia-a-dia normal
-- **Impacto:** Performance pode ser artificialmente elevada
-
-**L8 - Comparação Binária:**
-- Apenas 3 estratégias testadas (comentado, auto-explicativo, mal documentado)
-- Não testa combinações híbridas ou níveis intermediários
-- **Impacto:** Prática real pode envolver estratégias mistas
+Esses conceitos sustentam as hipóteses de que estruturas mais claras reduzem esforço, tempo e erros.
 
 ---
 
-## 5. Objetivos Específicos
+# 3. Objetivos e Questões (GQM)
 
-**O1 - Compreensão de Código:** Avaliar o impacto das diferentes estratégias de documentação (comentários vs. nomes descritivos vs. código mal documentado) no tempo necessário para desenvolvedores compreenderem a funcionalidade do código-fonte e na precisão dessa compreensão.
+## 3.1 Objetivo Geral
+Avaliar, **para desenvolvedores em nível iniciante a intermediário**, o efeito de diferentes estruturas de código (versões A, B e C) na **compreensão, modificação e correção** durante atividades de manutenção.
 
-**O2 - Eficiência em Modificações:** Determinar qual estratégia de documentação resulta em modificações de código mais rápidas, eficientes e de maior qualidade estrutural durante tarefas de manutenção evolutiva e corretiva.
+## 3.2 Objetivos Específicos
+- **O1:** Investigar o impacto da estrutura do código na compreensão.  
+- **O2:** Avaliar diferença de esforço e tempo em tarefas de modificação.  
+- **O3:** Medir qualidade e corretude das implementações.  
+- **O4:** Verificar impacto na correção de bugs.  
+- **O5:** Avaliar carga cognitiva percebida.  
 
-**O3 - Carga Cognitiva e Experiência do Desenvolvedor:** Identificar a influência das diferentes estratégias de documentação na carga cognitiva percebida, no nível de confiança dos desenvolvedores em suas modificações e no nível de frustração experimentado durante as tarefas.
+## 3.3 Questões de Pesquisa
+- **Q1:** A estrutura do código influencia o tempo de compreensão?  
+- **Q2:** Qual versão gera menor carga cognitiva?  
+- **Q3:** Há diferença na qualidade das modificações?  
+- **Q4:** A versão estrutural impacta a taxa de erros?  
 
-**O4 - Qualidade e Correção das Modificações:** Comparar a taxa de erros (lógicos, de sintaxe e regressões funcionais) introduzidos durante modificações de código sob as três diferentes estratégias de documentação.
+## 3.4 Métricas Associadas
+Exemplos (lista completa estará na Parte 4):
 
----
+- **M1:** Tempo total (s)  
+- **M2:** Número de arquivos visitados  
+- **M3:** Precision/Recall da compreensão  
+- **M9:** Complexidade ciclomática  
+- **M11:** NASA-TLX  
+- **M18:** Erros de compilação / execução
 
-## 6. Tabela GQM - Goal/Question/Metric
+##  3.5 Tabela GQM
 
-| **Objetivo** | **Pergunta de Pesquisa** | **Métricas Associadas** |
-|--------------|--------------------------|-------------------------|
-| **O1: Compreensão de Código**<br><br>Avaliar impacto no tempo e precisão da compreensão | **Q1.1:** Qual estratégia de documentação permite aos desenvolvedores identificar mais rapidamente a funcionalidade principal do código? | **M1:** Tempo de primeira compreensão (minutos)<br>**M2:** Taxa de acerto na identificação de funcionalidade (%) |
-| | **Q1.2:** Quantas releituras do código são necessárias para atingir compreensão completa da funcionalidade em cada estratégia? | **M3:** Número de releituras do código (contagem)<br>**M4:** Tempo total de análise (minutos) |
-| | **Q1.3:** Qual estratégia resulta em maior precisão e completude na descrição verbal/escrita da funcionalidade do código? | **M5:** Score de precisão na descrição (0-10)<br>**M2:** Taxa de acerto na identificação (%) |
-| **O2: Eficiência em Modificações**<br><br>Avaliar rapidez e qualidade das modificações | **Q2.1:** Qual estratégia de documentação permite aos desenvolvedores implementar modificações funcionais em menor tempo total? | **M6:** Tempo de modificação completa (minutos)<br>**M7:** Produtividade em modificações (LOC/minuto) |
-| | **Q2.2:** Em qual estratégia os desenvolvedores conseguem localizar mais rapidamente os pontos exatos do código que precisam ser modificados? | **M8:** Tempo para localizar ponto de modificação (minutos)<br>**M4:** Tempo total de análise (minutos) |
-| | **Q2.3:** Qual estratégia resulta em código modificado com melhor qualidade estrutural e menor complexidade? | **M9:** Complexidade ciclomática do código final (número)<br>**M10:** Score de qualidade de código (0-100) |
-| **O3: Carga Cognitiva**<br><br>Identificar impacto na experiência do desenvolvedor | **Q3.1:** Qual estratégia de documentação resulta em menor esforço mental percebido pelos desenvolvedores durante as tarefas? | **M11:** NASA-TLX score - carga mental (0-100)<br>**M12:** Escala de esforço subjetivo (1-7) |
-| | **Q3.2:** Em qual estratégia os desenvolvedores demonstram maior confiança na correção e qualidade de suas modificações? | **M13:** Escala de confiança auto-reportada (1-5)<br>**M14:** Taxa de verificação/revisão do código (contagem) |
-| | **Q3.3:** Qual estratégia de documentação causa menor nível de frustração nos desenvolvedores durante as tarefas de manutenção? | **M15:** Escala de frustração (NASA-TLX) (0-100)<br>**M11:** NASA-TLX score - carga mental (0-100) |
-| **O4: Qualidade das Modificações**<br><br>Comparar taxa de erros introduzidos | **Q4.1:** Qual estratégia de documentação resulta em menor quantidade de erros lógicos introduzidos nas modificações? | **M16:** Número de erros lógicos detectados (contagem)<br>**M17:** Taxa de defeitos por 100 LOC (defeitos/100 LOC) |
-| | **Q4.2:** Em qual estratégia os desenvolvedores cometem menos erros de sintaxe durante a implementação das modificações? | **M18:** Número de erros de sintaxe durante codificação (contagem)<br>**M6:** Tempo de modificação (minutos) |
-| | **Q4.3:** Qual estratégia leva a modificações que causam menos quebras de funcionalidades existentes (regressões)? | **M19:** Número de testes unitários falhados (contagem)<br>**M20:** Score de regressão funcional (%) |
+| Objetivo (O) | Perguntas (Q) | Métricas Associadas (M) |
+|--------------|---------------|--------------------------|
+| **O1 – Avaliar a compreensão do código nas versões A, B e C** | Q1.1 – A estrutura do código altera o tempo de compreensão? | M1 (Tempo de compreensão), M2 (Arquivos visitados) |
+| | Q1.2 – A estrutura impacta a precisão da compreensão? | M3 (Score de compreensão), M4 (Número de revisitas ao código) |
+| | Q1.3 – Participantes apresentam diferentes padrões de navegação conforme a versão? | M5 (Eventos de navegação), M2 (Arquivos visitados) |
+| **O2 – Avaliar a eficiência em tarefas de modificação** | Q2.1 – A versão do código influencia o tempo de implementação? | M6 (Tempo de modificação), M7 (Execuções de testes) |
+| | Q2.2 – A qualidade das modificações difere entre versões? | M9 (Complexidade ciclomática), M10 (Score Pylint) |
+| | Q2.3 – A estrutura afeta a produtividade percebida? | M11 (NASA-TLX), M13 (Confiança subjetiva) |
+| **O3 – Avaliar a qualidade do código produzido** | Q3.1 – As versões impactam a taxa de erros de compilação? | M18 (Erros IDE), M19 (Falhas de teste) |
+| | Q3.2 – A versão influencia o número de iterações até passar nos testes? | M7 (Execuções de testes), M19 (Falhas de teste) |
+| | Q3.3 – A versão impacta o acoplamento introduzido nas mudanças? | M21 (Acoplamento), M22 (Linhas modificadas) |
+| **O4 – Avaliar esforço e carga cognitiva em todas as tarefas** | Q4.1 – Há diferença de carga cognitiva entre as versões? | M11 (NASA-TLX), M12 (Esforço percebido) |
+| | Q4.2 – A estrutura impacta a frustração percebida? | M14 (Frustração), M13 (Confiança) |
+| | Q4.3 – A versão do código influencia o tempo total da sessão? | M1 (Tempo total), M6 (Tempo modificação) |
 
----
+## 3.6 Tabela de Métricas
 
-## 7. Tabela Completa de Métricas
+| Código | Nome | Descrição | Unidade |
+|--------|------|-----------|---------|
+| M1 | Tempo de compreensão | Tempo total gasto na tarefa 1 | segundos |
+| M2 | Arquivos visitados | Quantidade de arquivos abertos | contagem |
+| M3 | Score de compreensão | Acertos no questionário de entendimento | pontos |
+| M4 | Revisitas ao código | Número de retornos a trechos já lidos | contagem |
+| M5 | Eventos de navegação | Cliques, scrolls, switches de arquivo | contagem |
+| M6 | Tempo de modificação | Tempo total para implementar mudança | segundos |
+| M7 | Execuções de teste | Quantidade de vezes que a suíte foi executada | contagem |
+| M9 | Complexidade ciclomática | Medida estrutural calculada pelo Radon | número inteiro |
+| M10 | Score Pylint | Avaliação estática de qualidade | escore (0–10) |
+| M11 | NASA-TLX | Carga cognitiva global | escore (0–100) |
+| M12 | Esforço percebido | Autorrelato do participante | escala Likert |
+| M13 | Confiança | Avaliação subjetiva da solução | escala Likert |
+| M14 | Frustração | Indicador subjetivo de desconforto | escala Likert |
+| M18 | Erros de compilação | Quantidade de erros IDE | contagem |
+| M19 | Falhas na suíte de testes | Número de testes falhando | contagem |
+| M20 | Tentativas até sucesso | Iterações até todos os testes passarem | contagem |
+| M21 | Acoplamento introduzido | Dependências novas criadas | contagem |
+| M22 | Linhas modificadas | Linhas adicionadas/removidas | linhas |
 
-| **ID** | **Nome da Métrica** | **Descrição Detalhada** | **Unidade de Medida** |
-|--------|---------------------|-------------------------|----------------------|
-| **M1** | Tempo de primeira compreensão | Tempo decorrido desde o momento em que o participante inicia a leitura do código até o momento em que ele indica verbalmente ou por escrito que compreendeu a funcionalidade principal do sistema. Medido através de timestamp na interface experimental. | minutos |
-| **M2** | Taxa de acerto na identificação de funcionalidade | Percentual de funcionalidades corretamente identificadas pelo participante em relação ao total de funcionalidades principais esperadas (checklist de 10 funcionalidades-chave). Calculado como: (funcionalidades corretas / total esperado) × 100. | percentual (%) |
-| **M3** | Número de releituras do código | Quantidade de vezes que o participante retorna para reler seções específicas do código durante a fase de compreensão. Medido através de rastreamento de scroll e eye-tracking simulado (auto-relato ou observação). | contagem (número inteiro) |
-| **M4** | Tempo total de análise | Tempo total gasto pelo participante analisando e estudando o código antes de iniciar qualquer modificação. Inclui leitura inicial, releituras e formação do modelo mental. Medido desde início da tarefa até primeira linha de código modificada. | minutos |
-| **M5** | Score de precisão na descrição | Pontuação atribuída por avaliadores à descrição verbal ou escrita fornecida pelo participante sobre a funcionalidade do código. Rubrica de 0-10 pontos avaliando: completude (4 pontos), correção técnica (3 pontos), clareza (3 pontos). | pontos (0 a 10) |
-| **M6** | Tempo de modificação | Tempo total decorrido desde o momento em que o participante inicia a implementação da modificação solicitada até a finalização completa, incluindo testes e validação. Medido através de timestamps no ambiente experimental. | minutos |
-| **M7** | Produtividade em modificações | Número de linhas de código efetivamente modificadas (adicionadas + alteradas) dividido pelo tempo total de modificação. Calculado como: LOC modificadas / tempo de modificação. Mede eficiência bruta de codificação. | LOC/minuto (linhas de código por minuto) |
-| **M8** | Tempo para localizar ponto de modificação | Tempo decorrido desde a leitura completa da tarefa de modificação até o participante posicionar o cursor na primeira localização exata onde fará mudanças no código. Indica eficiência na navegação e localização. | minutos |
-| **M9** | Complexidade ciclomática do código final | Medida quantitativa da complexidade estrutural do código após a modificação, calculada pelo método de McCabe. Conta o número de caminhos independentes através do código. Valores mais baixos indicam código mais simples e manutenível. Calculada usando ferramenta radon ou similar. | número (inteiro, tipicamente 1-50+) |
-| **M10** | Score de qualidade de código | Pontuação agregada de qualidade calculada automaticamente através de ferramentas de análise estática (pylint, flake8). Considera: conformidade com PEP8 (40 pts), ausência de code smells (30 pts), duplicação de código (15 pts), coesão (15 pts). Range: 0-100. | pontos (0 a 100) |
-| **M11** | NASA-TLX score - carga mental | Pontuação do componente de demanda mental do questionário NASA Task Load Index, aplicado após cada tarefa. Avalia o nível de atividade mental e perceptual requerida. Escala de 0 (muito baixa) a 100 (muito alta). | pontos (0 a 100) |
-| **M12** | Escala de esforço subjetivo | Auto-avaliação do participante sobre o esforço mental investido na tarefa, usando escala Likert de 7 pontos: 1 = "muito pouco esforço" a 7 = "esforço extremo". Coletada através de questionário pós-tarefa. | escala Likert (1 a 7) |
-| **M13** | Escala de confiança auto-reportada | Nível de confiança do participante na correção e qualidade de suas modificações, medido através de pergunta direta: "Quão confiante você está de que suas modificações estão corretas?". Escala: 1 = "nada confiante" a 5 = "extremamente confiante". | escala Likert (1 a 5) |
-| **M14** | Taxa de verificação/revisão do código | Número de vezes que o participante para para revisar, reler ou testar manualmente seu código antes de declarar a tarefa como completa. Indica necessidade de validação repetida devido à incerteza. Medido por observação ou auto-relato. | contagem (número inteiro) |
-| **M15** | Escala de frustração (NASA-TLX) | Pontuação do componente de frustração do questionário NASA-TLX, medindo o nível de insegurança, desencorajamento, irritação e estresse experimentado durante a tarefa. Escala de 0 (nenhuma frustração) a 100 (frustração máxima). | pontos (0 a 100) |
-| **M16** | Número de erros lógicos detectados | Quantidade de erros de lógica de programação (bugs) detectados através da execução da suíte de testes unitários após a modificação. Inclui: resultados incorretos, exceções não tratadas, comportamentos inesperados. | contagem (número inteiro) |
-| **M17** | Taxa de defeitos por 100 LOC | Densidade de defeitos no código modificado, calculada como: (número total de defeitos encontrados / linhas de código modificadas) × 100. Métrica normalizada para comparar qualidade independente do tamanho da modificação. | defeitos por 100 LOC |
-| **M18** | Número de erros de sintaxe durante codificação | Quantidade de erros de sintaxe cometidos pelo participante durante a implementação, detectados pelo IDE ou compilador/interpretador. Inclui: erros de indentação, parênteses não fechados, sintaxe incorreta. Coletado através de logs do IDE. | contagem (número inteiro) |
-| **M19** | Número de testes unitários falhados | Quantidade de casos de teste da suíte de testes que falharam após a modificação do código. Indica quebras de funcionalidades existentes (regressões). Total de testes na suíte: 25 testes. | contagem (número inteiro, 0 a 25) |
-| **M20** | Score de regressão funcional | Percentual de funcionalidades originais que permaneceram funcionando corretamente após a modificação. Calculado como: (testes passados / total de testes) × 100. Valores próximos a 100% indicam modificação sem regressões. | percentual (0 a 100%) |
 
----
-
-## 8. Stakeholders e Impacto Esperado
-
-### 7.1 Stakeholders Principais
-
-**Stakeholder 1 - Pesquisadores e Acadêmicos**
-- **Interesse:** Avanço do conhecimento científico sobre manutenibilidade de código
-- **Expectativa:** Dados empíricos robustos e publicação de resultados
-- **Impacto:** Contribuição para área de Engenharia de Software Experimental
-
-**Stakeholder 2 - Desenvolvedores Participantes**
-- **Interesse:** Aprendizado sobre melhores práticas de documentação
-- **Expectativa:** Experiência educacional e feedback sobre suas habilidades
-- **Impacto:** 2-3 horas de tempo investido, possível ganho de conhecimento
-
-**Stakeholder 3 - Líderes Técnicos e Gerentes de Desenvolvimento**
-- **Interesse:** Evidências para embasar decisões sobre padrões de código
-- **Expectativa:** Diretrizes práticas baseadas em dados para suas equipes
-- **Impacto:** Possível mudança em políticas de documentação e code review
-
-**Stakeholder 4 - Educadores e Instrutores**
-- **Interesse:** Material didático sobre qualidade de código
-- **Expectativa:** Resultados que possam ser ensinados a estudantes
-- **Impacto:** Influência em currículo de disciplinas de engenharia de software
-
-**Stakeholder 5 - Comunidade de Desenvolvimento de Software**
-- **Interesse:** Resolução de debate histórico sobre comentários
-- **Expectativa:** Resposta baseada em evidências, não em opiniões
-- **Impacto:** Influência em práticas e cultura de desenvolvimento
-
-### 7.2 Interesses e Expectativas Detalhados
-
-| Stakeholder | Interesse Principal | Expectativa de Resultado | Nível de Impacto |
-|-------------|---------------------|--------------------------|------------------|
-| Pesquisadores | Publicação científica | Dados válidos e análises rigorosas | Alto |
-| Desenvolvedores | Aprendizado pessoal | Experiência prática e feedback | Médio |
-| Líderes Técnicos | Diretrizes práticas | Recomendações aplicáveis | Alto |
-| Educadores | Material didático | Casos de ensino baseados em evidências | Médio |
-| Comunidade | Esclarecimento técnico | Resolução de controvérsia | Baixo-Médio |
-
-### 7.3 Impactos Potenciais no Processo e Produto
-
-**Durante a Execução do Experimento:**
-- **Tempo dos participantes:** Investimento de 2-3 horas por participante
-- **Recursos computacionais:** Uso de laboratórios ou ambientes remotos
-- **Curva de aprendizado:** Possível ganho de conhecimento para participantes
-- **Impacto emocional:** Possível frustração temporária com código mal documentado (Versão C)
-
-**Após a Conclusão do Experimento:**
-- **Políticas de código:** Possível revisão de guidelines de documentação em organizações
-- **Práticas de code review:** Mudanças em critérios de avaliação de qualidade
-- **Treinamento:** Incorporação de resultados em programas de capacitação
-- **Ferramentas:** Possível desenvolvimento de ferramentas baseadas nos achados
-- **Pesquisas futuras:** Base para estudos subsequentes e replicações
 
 ---
 
-## 9. Riscos de Alto Nível, Premissas e Critérios de Sucesso
+# 4. Escopo e Contexto do Experimento
 
-### 8.1 Riscos de Alto Nível
+## 4.1 Escopo
+Inclui:
+- tarefas individuais  
+- uso de três versões de código  
+- tarefas de compreensão, modificação e correção  
+- coleta automática e subjetiva  
 
-#### Riscos de Negócio/Acadêmicos
-| ID | Risco | Probabilidade | Impacto | Mitigação |
-|----|-------|---------------|---------|-----------|
-| R1 | Resultados estatisticamente não significativos | Média | Alto | Cálculo de poder estatístico a priori, amostra adequada |
-| R2 | Baixa taxa de recrutamento de participantes | Média | Alto | Múltiplos canais de divulgação, incentivos apropriados |
-| R3 | Viés de seleção (apenas participantes motivados) | Alta | Médio | Documentar características da amostra, análise de sensibilidade |
-| R4 | Impossibilidade de publicação dos resultados | Baixa | Alto | Pré-registro do experimento, protocolo rigoroso |
+Exclui:
+- avaliação colaborativa  
+- análise longitudinal  
+- linguagens além de Python  
 
-#### Riscos Técnicos
-| ID | Risco | Probabilidade | Impacto | Mitigação |
-|----|-------|---------------|---------|-----------|
-| R5 | Falhas no ambiente de execução durante sessões | Média | Alto | Ambiente de backup, testes prévios, piloto |
-| R6 | Perda de dados coletados | Baixa | Muito Alto | Backup automático, redundância de armazenamento |
-| R7 | Instrumentação inadequada (métricas incorretas) | Média | Alto | Piloto para validar instrumentos, revisão por pares |
-| R8 | Problemas com gravação de métricas automáticas | Média | Médio | Logs redundantes, coleta manual como backup |
+## 4.2 Contexto do Estudo
+Caracteriza-se como:
 
-#### Riscos Operacionais
-| ID | Risco | Probabilidade | Impacto | Mitigação |
-|----|-------|---------------|---------|-----------|
-| R9 | Desistência de participantes durante experimento | Média | Médio | Sessões curtas, ambiente confortável, comunicação clara |
-| R10 | Tempo insuficiente para completar tarefas | Baixa | Médio | Piloto para calibrar tempo, tarefas ajustadas |
-| R11 | Variabilidade excessiva entre participantes | Alta | Médio | Bloqueio por experiência, coleta de covariáveis |
-| R12 | Problemas éticos não previstos | Baixa | Alto | Revisão por comitê de ética, consentimento informado |
+- ambiente acadêmico  
+- laboratório de ensino  
+- participantes com 1–3 anos de experiência  
+- tarefas controladas e padronizadas  
 
-**Nota sobre Premissas:** As premissas detalhadas estão descritas na Seção 4.3 acima.
+## 4.3 Premissas
+- ambiente estará funcional  
+- participantes seguirão o protocolo  
+- código fornecerá respostas determinísticas  
+- testes foram verificados previamente  
 
-### 9.2 Critérios de Sucesso Globais
+## 4.4 Restrições
+- Tempo máximo por participante: 120 min  
+- Amostra limitada à turma  
+- Computadores unificados com mesma configuração  
 
-#### Critérios Quantitativos (Go/No-Go)
+## 4.5 Limitações Previstas
+- Generalização restrita ao contexto educacional  
+- Código pequeno comparado à indústria  
+- Tarefas simplificadas 
 
-**O experimento será considerado BEM-SUCEDIDO se:**
+## 4.6 Template de Definição de Escopo 
 
- **Critério 1 - Tamanho de Amostra:**
-- Mínimo de 24 participantes completam o experimento (8 por grupo)
-- Meta ideal: 30 participantes (10 por grupo)
+| Elemento | Descrição |
+|----------|-----------|
+| **Objeto de estudo** | Três versões de código Python (A, B, C) para realizar tarefas de manutenção. |
+| **Propósito do estudo** | Avaliar o efeito da estrutura do código sobre compreensão, modificação, correção, esforço e erros. |
+| **Perspectiva** | Pesquisador (visão de engenharia de software). |
+| **Foco** | Eficiência, eficácia, esforço cognitivo e qualidade do código. |
+| **Contexto** | Estudantes de Engenharia de Software em ambiente de laboratório. |
+| **Tipo de experimento** | Controlado, entre-sujeitos, com três grupos independentes. |
+| **Escopo incluído** | Tarefas de compreensão, modificação e correção; coleta objetiva e subjetiva; utilização das três versões. |
+| **Escopo excluído** | Trabalho colaborativo; projetos reais; linguagens além de Python. |
 
- **Critério 2 - Completude de Dados:**
-- Pelo menos 80% dos participantes fornecem dados completos para todas as métricas principais
-- Taxa de perda de dados inferior a 20%
-
- **Critério 3 - Significância Estatística:**
-- Identificação de diferenças estatisticamente significativas (p < 0.05) em pelo menos 3 das métricas principais (M1, M6, M16, M11)
-- Poder estatístico observado ≥ 0.70
-
- **Critério 4 - Taxa de Conclusão:**
-- Pelo menos 75% dos participantes completam todas as três tarefas (compreensão, modificação, correção)
-- Taxa de desistência inferior a 25%
-
- **Critério 5 - Validade do Instrumento:**
-- Feedback dos participantes indica que instruções foram claras (score médio ≥ 4 em escala 1-5)
-- Ausência de problemas técnicos críticos que invalidem dados
-
-#### Critérios Qualitativos
-
- **Critério 6 - Consistência Interna:**
-- Métricas relacionadas apresentam correlações esperadas (ex: tempo e erros)
-- Ausência de contradições graves nos dados
-
- **Critério 7 - Relevância Prática:**
-- Diferenças observadas têm magnitude praticamente relevante (effect size médio ou grande: d ≥ 0.5)
-- Resultados são interpretáveis e acionáveis
-
-### 9.4 Critérios de Parada Antecipada (Stop Criteria)
-
-**O experimento será INTERROMPIDO ANTES DO TÉRMINO se:**
-
- **Critério de Parada 1 - Taxa de Desistência Crítica:**
-- Taxa de desistência ultrapassa 40% dos participantes recrutados
-- Indica problemas sérios no desenho ou execução
-
- **Critério de Parada 2 - Falhas Técnicas Recorrentes:**
-- Mais de 30% das sessões são comprometidas por problemas técnicos
-- Instrumentação se mostra fundamentalmente defeituosa
-
- **Critério de Parada 3 - Questões Éticas:**
-- Comitê de ética identifica riscos não previstos aos participantes
-- Participantes relatam desconforto ou estresse excessivo (score médio de frustração > 80)
-
- **Critério de Parada 4 - Mudança de Contexto:**
-- Mudanças organizacionais ou tecnológicas tornam o experimento irrelevante
-- Recursos críticos se tornam indisponíveis por período prolongado (> 4 semanas)
-
- **Critério de Parada 5 - Invalidação dos Dados:**
-- Descoberta de viés sistemático que compromete todos os dados coletados
-- Contaminação entre grupos (participantes compartilham informações sobre as versões)
 
 ---
 
-## 10. Contexto das Versões de Código
+# 5. Stakeholders e Impacto Esperado
 
-### Versão A - Código Auto-explicativo
-- **Características:** Nomes de variáveis e funções altamente descritivos e semânticos
-- **Exemplo:** `calculate_average_completion_time()`, `active_tasks_list`, `user_priority_level`
-- **Comentários:** Ausentes ou mínimos (apenas para casos complexos)
-- **Filosofia:** O código deve ser auto-explicativo através de naming conventions claras
+## 5.1 Stakeholders
+- Participantes  
+- Orientador  
+- Professores da banca  
+- Comunidade de pesquisa  
+- Estudantes futuros que poderão replicar estudo  
 
-### Versão B - Código com Comentários Abundantes
-- **Características:** Comentários detalhados explicando cada bloco de código
-- **Exemplo:** Nomes genéricos (`calc()`, `list1`, `val`) mas com comentários linha a linha
-- **Comentários:** Presentes em praticamente todas as funções e blocos lógicos
-- **Filosofia:** Documentação via comentários compensa nomes menos descritivos
+## 5.2 Interesses e Expectativas
+| Stakeholder | Interesse |
+|-------------|-----------|
+| Participantes | Aprendizado, experiência prática |
+| Orientador | Qualidade metodológica |
+| Banca | Rigor científico |
+| Comunidade | Replicabilidade |
 
-### Versão C - Código Mal Documentado (Controle Negativo)
-- **Características:** Nomes não descritivos e ausência de comentários
-- **Exemplo:** `a`, `b`, `x`, `func1()`, `process()`
-- **Comentários:** Ausentes
-- **Filosofia:** Exemplo de código de baixa qualidade (baseline para comparação)
+## 5.3 Impactos Potenciais
+- Pequeno aumento da carga de trabalho dos participantes  
+- Dados úteis para decisões de design  
+- Possibilidade de replicação em anos futuros  
+
+# 6. Riscos de Alto Nível, Premissas e Critérios de Sucesso
+
+## 6.1 Riscos de Alto Nível (Negócio, Técnicos e Humanos)
+
+### **Riscos Técnicos**
+- Falha em scripts de logging.
+- IDE não registrar corretamente erros e warnings.
+- Incompatibilidades entre versão da IDE e bibliotecas.
+- Instabilidade na execução da suíte de testes.
+
+### **Riscos Humanos**
+- Participante desistir durante a tarefa.
+- Fadiga ou frustração influenciar desempenho.
+- Dificuldade de entendimento das instruções.
+
+### **Riscos Organizacionais**
+- Laboratório indisponível na data marcada.
+- Interferência externa durante as sessões (ruídos, interrupções).
+- Agenda conflitante dos participantes.
+
+### **Riscos Científicos**
+- Amostra insuficiente → baixo poder estatístico.
+- Viés de seleção prejudicando comparabilidade.
+- Violação das premissas dos testes estatísticos.
 
 ---
 
+## 6.2 Critérios de Sucesso Globais (Go/No-Go)
+
+O experimento será considerado **viável** se:
+
+- Pelo menos **80% dos participantes completos** concluírem todas as tarefas.
+- Todas as métricas essenciais forem registradas com consistência.
+- Scripts de logging funcionarem em **100%** das sessões.
+- Dados forem suficientes para comparar os três tratamentos.
+- Não houver violação crítica de pressupostos estatísticos.
+
+---
+
+## 6.3 Critérios de Parada Antecipada (Pré-execução)
+
+O experimento será **suspenso** caso:
+
+- Scripts apresentem falhas replicáveis e não contornáveis.
+- O laboratório de informática fique indisponível.
+- A amostra efetiva fique inferior a 10 participantes.
+- Problemas éticos sejam identificados durante o processo.
+- Testes automatizados falharem sistematicamente sem explicação.
+
+---
+
+# 7. Modelo Conceitual e Hipóteses
+
+## 7.1 Modelo Conceitual do Experimento
+
+A lógica do modelo:
+
+
+Em termos formais:
+
+- A estrutura do código altera o **nível de compreensão**.  
+- A compreensão afeta o **esforço cognitivo**.  
+- O esforço influencia **tempo** e **produtividade**.  
+- Todos juntos influenciam **qualidade do código produzido**.
+
+---
+
+## 7.2 Hipóteses Formais
+
+### **Para Q1 — Tempo de Compreensão**
+- **H0:** Não há diferença significativa no tempo entre versões A, B e C.  
+- **H1:** Pelo menos uma versão apresenta tempo significativamente menor.
+
+### **Para Q2 — Carga Cognitiva**
+- **H0:** A carga cognitiva é a mesma para A, B e C.  
+- **H1:** Existe diferença significativa entre as cargas cognitivas.
+
+### **Para Q3 — Qualidade da Modificação**
+- **H0:** A qualidade do código modificado é igual entre as versões.  
+- **H1:** Alguma versão apresenta qualidade superior/menor.
+
+### **Para Q4 — Taxa de Erros**
+- **H0:** Não há diferença na taxa de erros cometidos.  
+- **H1:** A estrutura influencia diretamente a taxa de erros.
+
+---
+
+## 7.3 Nível de Significância e Poder Estatístico
+
+- **Nível de significância (α):** 0.05  
+- **Poder estatístico desejado:** ≥ 0.80  
+- **Tamanho de efeito esperado:** moderado (d = 0.5)
+
+Devido ao tamanho da amostra, o poder estatístico será reavaliado após coleta.
+
+---
+
+# 8. Variáveis, Fatores, Tratamentos e Objetos
+
+## 8.1 Objetos de Estudo
+- Três versões de código Python:  
+  - **Versão A:** Estrutura original.  
+  - **Versão B:** Estrutura refatorada/modularizada.  
+  - **Versão C:** Estrutura alternativa com dependências distintas.
+
+Cada uma implementa exatamente o mesmo comportamento funcional.
+
+---
+
+## 8.2 Sujeitos / Participantes
+Participantes serão estudantes da disciplina de Engenharia de Software:
+
+- 1 a 4 anos de experiência programando  
+- Familiaridade com Python: variável  
+- Total estimado: entre 18 e 24 participantes  
+
+---
+
+## 8.3 Variáveis Independentes (Fatores)
+- **Fator principal:** Tipo da versão do código.  
+- **Níveis:** A, B, C.
+
+---
+
+## 8.4 Tratamentos (Condições Experimentais)
+- **Grupo A** → recebe código da versão A  
+- **Grupo B** → recebe código da versão B  
+- **Grupo C** → recebe código da versão C  
+
+A alocação será randomizada.
+
+---
+
+## 8.5 Variáveis Dependentes (Respostas)
+(Resumo — a lista completa aparece novamente na Parte 4)
+
+- Tempo total (s)  
+- Erros cometidos  
+- Pontuação de compreensão  
+- Qualidade do código modificado  
+- Carga cognitiva subjetiva (NASA-TLX)  
+- Número de execuções dos testes  
+
+---
+
+## 8.6 Variáveis de Controle
+- Ambiente idêntico  
+- Versão da IDE  
+- Tarefas idênticas  
+- Tempo máximo por sessão  
+- Testes automatizados iguais  
+
+---
+
+## 8.7 Variáveis de Confusão Conhecidas
+- Experiência prévia com Python  
+- Fadiga  
+- Motivação  
+- Estratégias pessoais de navegação  
+- Familiaridade com IDE  
+- Histórico de estudo/trabalho recente com manutenção
+
+Essas variáveis serão registradas via questionário inicial.
+
+
+## 8.8 Tabela de Variáveis do Experimento
+
+| Tipo | Nome | Descrição |
+|------|------|-----------|
+| Independente | Versão do Código | Níveis A, B e C |
+| Dependente | Tempo de compreensão | M1 |
+| Dependente | Score de compreensão | M3 |
+| Dependente | Tempo de modificação | M6 |
+| Dependente | Qualidade estrutural | M9, M10 |
+| Dependente | Carga cognitiva | M11 |
+| Dependente | Taxa de erros | M18, M19 |
+| Controle | Ambiente | Mesmo hardware, IDE, versão Python |
+| Controle | Tarefas | Iguais para todos participantes |
+| Controle | Tempo máximo | 120 minutos |
+| Confusão | Experiência em Python | Variável demográfica |
+| Confusão | Familiaridade com IDE | Variável demográfica |
+| Confusão | Fadiga | Variável subjetiva |
+
+## 8.9 Fatores e Tratamentos
+
+| Fator | Níveis (Tratamentos) | Descrição |
+|--------|------------------------|-------------|
+| Estrutura do Código | A, B, C | Versões diferentes do mesmo sistema |
+
+### Combinações Possíveis
+
+| Combinação | Descrição |
+|------------|-----------|
+| A → Tarefas 1–3 | Participante executa tarefas usando código A |
+| B → Tarefas 1–3 | Participante executa tarefas usando código B |
+| C → Tarefas 1–3 | Participante executa tarefas usando código C |
+
+
+---
+
+# 9. Desenho Experimental
+
+## 9.1 Tipo de Desenho
+**Desenho entre sujeitos (between-subjects), completamente randomizado.**
+
+Justificativa:  
+Evita efeito de aprendizagem entre versões, reduz tempo por participante, simplifica protocolo.
+
+---
+
+## 9.2 Randomização e Alocação
+Processo:
+
+1. Após preencher dados demográficos, cada participante recebe um ID.  
+2. O ID alimenta um script que sorteia um grupo.  
+3. O participante é encaminhado à estação correspondente (A/B/C).  
+
+A randomização garante balanceamento e imparcialidade.
+
+---
+
+## 9.3 Balanceamento e Contrabalanço
+- Tamanho de cada grupo será equilibrado (aprox. 6–8 participantes).  
+- A ordem das tarefas é fixa (compreensão → modificação → bug fix).  
+- Como é entre sujeitos, contrabalanço de condições não se aplica.  
+
+---
+
+## 9.4 Número de Grupos e Sessões
+- **3 grupos** (A, B, C).  
+- **1 sessão por participante**, duração ~120 min.  
+- Cada sessão engloba todas as tarefas.
+
+---
+
+# 10. População, Sujeitos e Amostragem
+
+## 10.1 População-Alvo
+Desenvolvedores juniores ou estudantes com experiência intermediária, perfil típico de profissionais no início de carreira.
+
+---
+
+## 10.2 Critérios de Inclusão
+- Ter familiaridade com lógica e programação.  
+- Conhecimento básico de Python.  
+- Estar matriculado na disciplina-alvo.  
+- Aceitar participar voluntariamente.
+
+---
+
+## 10.3 Critérios de Exclusão
+- Falta total de experiência em programação.  
+- Impedimentos éticos (parentesco com o pesquisador, por exemplo).  
+- Participar do piloto.  
+- Indisponibilidade no dia da coleta.
+
+---
+
+## 10.4 Tamanho da Amostra Planejado
+- **Total:** 18 a 24 participantes.  
+- **Por grupo:** 6 a 8 participantes.  
+
+Essa distribuição permite comparação estatística significativa dentro das limitações acadêmicas.
+
+---
+
+## 10.5 Método de Seleção / Recrutamento
+- Amostragem por conveniência: turma da disciplina.  
+- Divulgação via professor, e-mail e Moodle.  
+- Participação não obrigatória.
+
+---
+
+## 10.6 Treinamento e Preparação
+- Mini tutorial (5 a 10 minutos).  
+- Mostra como executar testes.  
+- Garante entendimento do protocolo.  
+- Evita vieses de habilidade com ferramentas.
+
+# 11. Instrumentação e Protocolo Operacional
+
+Esta seção detalha **todos os instrumentos, materiais, processos e rotinas** utilizados na execução do experimento, garantindo reprodutibilidade, padronização e rastreabilidade.
+
+---
+
+## 11.1 Instrumentos de Coleta
+
+### **A) Instrumentos Automáticos**
+| Instrumento | Função | Dados Coletados | Métricas |
+|-------------|--------|------------------|----------|
+| **Script de Logging (Python)** | Captura ações em tempo real | timestamps, arquivos abertos, execuções | M1, M4, M6, M7 |
+| **Logs da IDE** | Erros em tempo real | syntax errors, warnings | M18 |
+| **Radon** | Análise de complexidade | complexidade ciclomática | M9 |
+| **Pylint / Flake8** | Qualidade estrutural | score de legibilidade | M10 |
+| **Test Runner** | Execução da suíte | falhas e sucessos | M19, M20 |
+
+### **B) Instrumentos Manuais**
+| Instrumento | Função | Métricas |
+|-------------|---------|-----------|
+| Questionário Inicial | Dados demográficos | variáveis de confusão |
+| NASA-TLX | Carga cognitiva | M11, M12 |
+| Escala Likert | Satisfação, confiança | M13 |
+| Ficha de Observação | Registro comportamental | apoio qualitativo |
+
+### **C) Instrumentos Híbridos**
+- Google Forms (exportação CSV)  
+- Excel (consolidação)  
+- Repositório Git com versionamento das soluções  
+
+---
+
+## 11.2 Materiais de Suporte
+
+### **Para participantes**
+- Guia do participante  
+- Tutorial de ambiente  
+- Manual de execução de testes  
+- FAQ de dúvidas comuns  
+- Instruções impressas de cada tarefa  
+
+### **Para pesquisadores**
+- Checklist pré-sessão  
+- Template de anotações  
+- Scripts de validação  
+- Relatórios automáticos pós-sessão  
+
+---
+
+## 11.3 Procedimento Experimental (Passo a Passo)
+
+### **FASE 1 — Recepção e Preparação**
+1. Recepção do participante.  
+2. Explicação do estudo.  
+3. Coleta de consentimento.  
+4. Preenchimento do questionário demográfico.  
+5. Treinamento rápido (tutorial).  
+6. Inicialização dos scripts de logging.
+
+---
+
+### **FASE 2 — Tarefa 1: Compreensão**
+1. Participante lê a descrição do problema.  
+2. Abre a versão do código (A/B/C).  
+3. Realiza inspeção e navegação livre.  
+4. Ao finalizar, preenche questionário de compreensão.
+
+**Coleta:** M1, M2, M3, M4, M5
+
+---
+
+### **FASE 3 — Tarefa 2: Modificação**
+1. Ler requisito de mudança.  
+2. Implementar a nova funcionalidade.  
+3. Rodar testes até passar.  
+4. Submeter arquivo final.
+
+**Coleta:** M6–M10, M18
+
+---
+
+### **FASE 4 — Tarefa 3: Correção de Bug**
+1. Descrição do bug é entregue.  
+2. Localizar origem do problema.  
+3. Corrigir e validar com testes.  
+4. Submeter solução final.
+
+**Coleta:** M16–M20
+
+---
+
+### **FASE 5 — Finalização**
+1. Preenchimento do NASA-TLX.  
+2. Questionário subjetivo.  
+3. Encerramento e agradecimento.  
+4. Backup automático dos dados.
+
+---
+
+## 11.4 Plano de Piloto
+
+### **Objetivos do piloto**
+- Ajustar clareza das instruções  
+- Confirmar viabilidade do tempo total  
+- Verificar estabilidade dos scripts  
+- Validar métricas capturadas  
+
+### **Critérios para ajustes**
+- Tarefas demorando mais de 30% do previsto  
+- Erros recorrentes nos mesmos trechos  
+- Dificuldades relatadas por mais de 20% dos participantes  
+- Logs incompletos  
+
+---
+
+# 12. Plano de Análise de Dados
+
+## 12.1 Estratégia Geral
+1. **Validação:** verificar ausência de falhas nos dados.  
+2. **Descritiva:** média, mediana, variância, IQR.  
+3. **Normalidade:** Shapiro-Wilk.  
+4. **Comparação:** ANOVA ou Kruskal-Wallis.  
+5. **Correlações:** Pearson ou Spearman.  
+6. **Efeito:** Cohen’s d, η².  
+7. **Qualitativo:** codificação, categorias, triangulação.  
+
+---
+
+## 12.2 Métodos Estatísticos Planejados
+
+| Tipo de Métrica | Normal? | Teste | Medidas Complementares |
+|------------------|---------|--------|-------------------------|
+| Tempo | Sim | ANOVA | Tukey |
+| Tempo | Não | Kruskal-Wallis | Dunn |
+| Carga Cognitiva | Não | Mann-Whitney | ρ |
+| Qualidade | Sim | ANOVA | d |
+| Erros | – | Qui-quadrado | distribuição Poisson |
+
+---
+
+## 12.3 Tratamento de Dados Faltantes
+- Até 5% → imputação por média/mediana  
+- 5–20% → imputação múltipla  
+- +20% → exclusão da métrica  
+- Falha total → marcação como “não realizado”  
+
+---
+
+## 12.4 Análise Qualitativa
+Método adotado: **Análise de Conteúdo (Bardin)**.
+
+Etapas:  
+1. Pré-análise  
+2. Codificação  
+3. Agrupamento  
+4. Interpretação e triangulação  
+
+Categorias previstas:
+- frustração  
+- clareza percebida  
+- navegabilidade  
+- confiança na solução  
+
+---
+
+# 13. Avaliação de Validade
+
+## 13.1 Validade de Conclusão
+**Ameaças:**
+- Baixo poder estatístico  
+- Variabilidade de habilidade  
+- Erros instrumentais  
+
+**Mitigações:**
+- Amostra mínima de 18  
+- Instrumentação redundante  
+- Análise de covariância se necessário  
+
+---
+
+## 13.2 Validade Interna
+**Ameaças:**  
+- Fadiga  
+- Diferença prévia entre grupos  
+- Ambiente ruidoso  
+
+**Mitigações:**  
+- Sessões curtas  
+- Randomização completa  
+- Ambiente controlado  
+
+---
+
+## 13.3 Validade de Constructo
+**Ameaças:**  
+- Métrica não representar exatamente o construto  
+- Interpretação ambígua de perguntas  
+
+**Mitigações:**  
+- Uso do NASA-TLX  
+- Questionários pilotados  
+
+---
+
+## 13.4 Validade Externa
+**Ameaças:**  
+- Código simples comparado à indústria  
+- Amostra acadêmica  
+
+**Mitigações:**  
+- Transparência no relatório  
+- Sugestão explícita de replicações futuras  
+
+---
+
+## 13.5 Tabela Resumo das Ameaças
+
+| Tipo | Ameaça | Risco | Mitigação |
+|------|---------|---------|------------|
+| Conclusão | Baixo poder | Médio | Aumento da amostra |
+| Interna | Fadiga | Alto | Sessões curtas |
+| Constructo | Questionários ambíguos | Médio | Piloto |
+| Externa | Código pequeno | Alto | Replicação |
+
+---
+
+# 14. Ética, Privacidade e Conformidade
+
+## 14.1 Questões Éticas
+- Participação voluntária  
+- Risco mínimo  
+- Pode desistir a qualquer momento  
+- Tarefas não afetam nota da disciplina  
+
+---
+
+## 14.2 Consentimento Informado
+Documento contendo:
+- Objetivos  
+- Procedimentos  
+- Riscos/Benefícios  
+- Sigilo dos dados  
+- Contatos do pesquisador  
+
+---
+
+## 14.3 Privacidade e LGPD
+- Dados anonimizados  
+- Identificação substituída por ID  
+- Armazenamento criptografado  
+- Retenção por até 5 anos  
+
+---
+
+## 14.4 Aprovações Necessárias
+- Comitê de Ética da instituição  
+- Orientador  
+- Coordenação de curso  
+
+---
+
+# 15. Recursos, Infraestrutura e Orçamento
+
+## 15.1 Recursos Humanos
+| Papel | Responsabilidade |
+|-------|-------------------|
+| PI | Coordenação geral |
+| Orientador | Validação científica |
+| Auxiliar | Apoio às sessões |
+| Participantes | Execução das tarefas |
+
+---
+
+## 15.2 Infraestrutura Técnica
+- 10–20 computadores idênticos  
+- IDE (VS Code ou PyCharm)  
+- Python 3.12  
+- Test Runner configurado  
+- Repositório Git privado  
+
+---
+
+## 15.3 Materiais e Insumos
+- Termos impressos  
+- Instruções das tarefas  
+- Coffee break  
+- Extensões e cabos de energia  
+- Pendrive para backup emergencial  
+
+---
+
+## 15.4 Orçamento Estimado
+
+| Item | Custo (R$) |
+|------|-------------|
+| Impressões | 30 |
+| Coffee Break | 100 |
+| Pendrive | 60 |
+| Outros (imprevistos) | 50 |
+| **Total** | **240** |
+
+# 16. Cronograma, Marcos e Riscos Operacionais
+
+## 16.1 Macrocronograma (Pré-execução até Execução)
+
+| Semana | Atividade | Entregáveis |
+|--------|------------|-------------|
+| 1 | Ajustes finais do plano | Versão v2.0 |
+| 2 | Submissão ao Comitê de Ética | Protocolo |
+| 3 | Correções solicitadas | v2.1 |
+| 4 | Execução do piloto | Relatório do piloto |
+| 5 | Ajustes pós-piloto | v2.2 |
+| 6–9 | Execução das sessões experimentais | Dados coletados |
+| 10 | Análise inicial dos dados | Base consolidada |
+| 11 | Análise estatística completa | Relatório preliminar |
+| 12 | Discussão e resultados | Documento final |
+| 13 | Escrita final do TCC | Capítulo de métodos |
+| 14 | Entrega | Versão final |
+
+---
+
+## 16.2 Dependências Entre Atividades
+
+- Coleta **só inicia** após aprovação do Comitê de Ética.  
+- Ajustes no código dependem do piloto.  
+- Consolidação dos dados depende do fim das sessões.  
+- Análise estatística depende do conjunto final de métricas.  
+
+---
+
+## 16.3 Riscos Operacionais e Contingências
+
+| Risco | Impacto | Probabilidade | Contingência |
+|-------|----------|----------------|---------------|
+| Falha no laboratório | Alto | Baixa | Sessões remotas |
+| Ausência de participantes | Médio | Média | Overbooking |
+| Erro nos logs | Alto | Baixa | Coleta manual secundária |
+| Testes quebrados | Alto | Muito Baixa | Reversão para snapshot estável |
+| Barulho no ambiente | Médio | Média | Mudança de sala |
+
+---
+
+# 17. Governança do Experimento
+
+## 17.1 Papéis e Responsabilidades Formais
+
+| Papel | Responsabilidades |
+|-------|-------------------|
+| **Pesquisador Principal (PI)** | Coordenação total, execução, análise estatística |
+| **Orientador** | Supervisão científica, revisão metodológica |
+| **Auxiliar Técnico** | Apoio nas sessões e controle do ambiente |
+| **Participantes** | Execução das tarefas experimentais |
+
+---
+
+## 17.2 Ritos de Acompanhamento Pré-Execução
+- **Reunião semanal** PI + orientador  
+- **Checklist diário** antes das sessões  
+- **Briefing pré-sessão** com auxiliar  
+- **Debriefing pós-sessão** com registro de problemas  
+
+---
+
+## 17.3 Processo de Controle de Mudanças
+1. Solicitação formal registrada.  
+2. Avaliação pelo PI.  
+3. Revisão científica pelo orientador.  
+4. Aprovação conjunta.  
+5. Registro no histórico de versões.  
+
+---
+
+# 18. Plano de Documentação e Reprodutibilidade
+
+## 18.1 Repositórios e Convenções de Nomeação
+- Repositório GitHub privado:  
+  - `/code-A`  
+  - `/code-B`  
+  - `/code-C`  
+  - `/scripts`  
+  - `/data-raw`  
+  - `/data-clean`  
+  - `/analysis`  
+
+Nomes dos arquivos seguem padrão:  
+`[ID-Participante]_[Tarefa]_[Versao].py`
+
+---
+
+## 18.2 Templates e Artefatos Padrão
+- Template do NASA-TLX  
+- Template de questionário inicial  
+- Template de anotação de sessão  
+- Scripts padronizados de logging  
+- Planilhas mestre de métricas  
+
+---
+
+## 18.3 Empacotamento para Replicação
+Inclui:  
+- Código congelado  
+- Scripts  
+- Guia de execução  
+- Questionários  
+- Dados anonimizados  
+- Versão final do protocolo  
+
+Objetivo: permitir que outra equipe replique o estudo sem suporte adicional.
+
+---
+
+# 19. Plano de Comunicação
+
+## 19.1 Públicos e Mensagens-Chave
+
+| Público | Mensagem |
+|---------|-----------|
+| Participantes | Datas, duração, instruções |
+| Orientador | Progresso, riscos e ajustes |
+| Comitê de Ética | Alterações relevantes |
+| Coordenação | Agendamento de laboratório |
+
+---
+
+## 19.2 Canais e Frequência de Comunicação
+- E-mail institucional  
+- WhatsApp (grupo de participantes)  
+- GitHub (parte técnica)  
+- Google Drive (documentos)  
+
+---
+
+## 19.3 Pontos Obrigatórios de Comunicação
+- Aprovação do protocolo  
+- Início e fim das coletas  
+- Problemas técnicos graves  
+- Mudanças de cronograma  
+- Entrega do relatório final  
+
+---
+
+# 20. Critérios de Prontidão (Definition of Ready)
+
+## 20.1 Checklist Completo
+- [x] Aprovação do Comitê de Ética  
+- [x] Versões A/B/C revisadas  
+- [x] Scripts testados  
+- [x] Sala/laboratório reservado  
+- [x] Questionários ativos  
+- [x] Material impresso  
+- [x] Ambiente de testes verificado  
+- [x] Guia do participante atualizado  
+- [x] Backup configurado  
+- [x] Piloto executado e validado  
+
+---
+
+## 20.2 Aprovações Finais Necessárias
+A execução começa somente após aprovação formal de:
+
+- **Orientador**  
+- **Comitê de Ética**  
+- **Pesquisador Principal (PI)**  
+
+Confirmação registrada por e-mail ou assinatura digital.
+
+---
+
+#  FLUXOGRAMAS DO EXPERIMENTO
+
+# **Fluxograma – Mermaid**
+
+```mermaid
+flowchart TD
+    A[Início] --> B[Recepção e Consentimento]
+    B --> C[Questionário Demográfico]
+    C --> D[Treinamento do Participante]
+    D --> E[Tarefa 1: Compreensão]
+    E --> F[Questionário de Compreensão]
+    F --> G[Tarefa 2: Modificação]
+    G --> H[Execução dos Testes Automatizados]
+    H --> I[Tarefa 3: Correção de Bug]
+    I --> J[NASA-TLX + Questionário Final]
+    J --> K[Backup dos Dados]
+    K --> L[Fim da Sessão]
