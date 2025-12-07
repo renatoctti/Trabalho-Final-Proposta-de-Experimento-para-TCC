@@ -1,7 +1,7 @@
 # 1. Identificação Básica
 
 ## 1.1 Título do Experimento
-**Avaliação dos Efeitos de Três Versões de Código (A, B e C) sobre a Compreensão, Modificação e Correção em Manutenção de Software.**
+**Impacto da Estrutura do Código na Compreensão, Modificação e Correção em Manutenção de Software.**
 
 ## 1.2 ID / Código do Estudo
 **EXP-MANUT-3VAR-2025**
