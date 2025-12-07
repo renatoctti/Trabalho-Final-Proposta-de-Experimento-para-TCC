@@ -323,10 +323,37 @@ Devido ao tamanho da amostra, o poder estatístico será reavaliado após coleta
 # 8. Variáveis, Fatores, Tratamentos e Objetos
 
 ## 8.1 Objetos de Estudo
-- Três versões de código Python:  
-  - **Versão A:** Estrutura original.  
-  - **Versão B:** Estrutura refatorada/modularizada.  
-  - **Versão C:** Estrutura alternativa com dependências distintas.
+
+O experimento utiliza **três versões do mesmo código**, todas funcionalmente idênticas, diferindo apenas na clareza, nomeação e documentação. Essas diferenças estruturais são essenciais para avaliar impacto na compreensão, modificação, esforço cognitivo e taxa de erros.
+
+### **Versão A — Sem comentários, nomes descritivos**
+- Não possui comentários explicativos.
+- Nomes de variáveis e funções são longos, claros e autoexplicativos.
+- Facilita a compreensão mesmo sem documentação adicional.
+
+---
+
+### **Versão B — Muitos comentários, nomes curtos**
+- Contém muitos comentários detalhados.
+- Os nomes são curtos, genéricos e pouco informativos.
+- A leitura exige alternância constante entre comentários e código.
+
+---
+
+### **Versão C — Sem comentários e com nomes ruins**
+- Não possui comentários.
+- Nomes são ruins, genéricos ou confusos.
+- Representa a pior legibilidade e manutenibilidade.
+
+---
+
+### **Resumo Comparativo**
+| Versão | Comentários | Nomes | Dificuldade Esperada |
+|--------|-------------|--------|-----------------------|
+| **A** | Nenhum | Descritivos e claros | Média |
+| **B** | Muitos | Curtos e pouco informativos | Alta |
+| **C** | Nenhum | Ruins / confusos | Muito alta |
+
 
 Cada uma implementa exatamente o mesmo comportamento funcional.
 
