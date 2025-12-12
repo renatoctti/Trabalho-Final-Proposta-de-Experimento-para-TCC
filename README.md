@@ -10,15 +10,17 @@
 | Versão | Data | Alterações |
 |--------|-------|-------------|
 | v1.0 | 2025-11-23 | Primeira versão do plano |
-| v1.1 | 2025-11-28 |  Incrementação do plan0  |
-| v2.0 | 2025-12-01 | Finalização, fluxograma e tabelas |
+| v2.0 | 2025-11-28 |  Incrementação do plano  |
+| v3.0 | 2025-12-01 | Fluxograma e tabelas |
+| v4.0 | 2025-12-01 | Video e finalização |
+
 
 ## 1.4 Datas
 - **Criação:** 23/11/2025  
-- **Última atualização:** 1/12/2025  
+- **Última atualização:** 12/12/2025  
 
 ## 1.5 Autores
-- **Renato Cazzoletti – Discente – Engenharia de Software**  
+- **Renato Cazzoletti**  
 
 ## 1.6 Responsável Principal (PI)
 **Renato Cazzoletti**
@@ -495,7 +497,6 @@ Desenvolvedores juniores ou estudantes com experiência intermediária, perfil t
 ## 10.2 Critérios de Inclusão
 - Ter familiaridade com lógica e programação.  
 - Conhecimento básico de Python.  
-- Estar matriculado na disciplina-alvo.  
 - Aceitar participar voluntariamente.
 
 ---
@@ -628,20 +629,73 @@ Esta seção detalha **todos os instrumentos, materiais, processos e rotinas** u
 
 ---
 
-## 11.4 Plano de Piloto
+## 11.4 Fluxograma operacional do experimento
 
-### **Objetivos do piloto**
-- Ajustar clareza das instruções  
-- Confirmar viabilidade do tempo total  
-- Verificar estabilidade dos scripts  
-- Validar métricas capturadas  
+```mermaid
+flowchart TD
 
-### **Critérios para ajustes**
-- Tarefas demorando mais de 30% do previsto  
-- Erros recorrentes nos mesmos trechos  
-- Dificuldades relatadas por mais de 20% dos participantes  
-- Logs incompletos  
+%% ======================
+%% INICIO E PREPARACAO
+%% ======================
 
+subgraph S0[Etapa Inicial]
+    A([Inicio do Experimento]) --> B[Convite aos Participantes]
+    B --> C[Consentimento Informado]
+    C --> D["Questionario Inicial\n(experiencia com Python)"]
+    D --> E["Randomizacao da Versao\n(A, B ou C)"]
+end
+
+%% ======================
+%% RAMIFICACAO A / B / C
+%% ======================
+
+subgraph R0[Distribuicao das Versoes de Codigo]
+    E --> FA["Recebe Versao A\n(nomes bons,\nsem comentarios)"]
+    E --> FB["Recebe Versao B\n(muitos comentarios,\nnomes curtos)"]
+    E --> FC["Recebe Versao C\n(nomes ruins,\nsem comentarios)"]
+end
+
+%% Convergencia
+FA --> G
+FB --> G
+FC --> G
+
+%% ======================
+%% FLUXO PRINCIPAL UNICO
+%% ======================
+
+subgraph S1[Execucao das Tarefas]
+    G["Instrucao das Tarefas\n(regras, tempo, orientacoes)"] --> T1[Tarefa 1: Compreensao]
+    T1 --> M1["Metricas T1\n- tempo\n- revisitas\n- navegacao"]
+
+    M1 --> T2[Tarefa 2: Modificacao]
+    T2 --> M2["Metricas T2\n- linhas alteradas\n- erros\n- acoplamento"]
+
+    M2 --> T3[Tarefa 3: Correcao]
+    T3 --> M3["Metricas T3\n- tempo\n- tentativas\n- execucoes de teste\n- sucesso/falha"]
+end
+
+%% ======================
+%% FECHAMENTO
+%% ======================
+
+M3 --> K["NASA TLX\n(esforco, frustracao, demanda mental)"]
+K --> L["Entrega dos Artefatos\n(codigo, logs, formularios)"]
+L --> M([Encerramento do Participante])
+
+%% ======================
+%% ANALISE
+%% ======================
+
+M --> Z
+
+subgraph S2[Analise e Resultados]
+    Z["Anonimizacao e Armazenamento dos Dados"] --> X["Analise Estatistica\nANOVA ou Kruskal-Wallis\nTestes de Hipotese"]
+    X --> Y([Resultados e Conclusoes])
+end
+
+
+```
 ---
 
 # 12. Plano de Análise de Dados
@@ -867,7 +921,6 @@ Documento contendo:
 | Ausência de participantes | Médio | Média | Overbooking |
 | Erro nos logs | Alto | Baixa | Coleta manual secundária |
 | Testes quebrados | Alto | Muito Baixa | Reversão para snapshot estável |
-| Barulho no ambiente | Médio | Média | Mudança de sala |
 
 ---
 
@@ -997,20 +1050,4 @@ Confirmação registrada por e-mail ou assinatura digital.
 
 ---
 
-#  FLUXOGRAMAS DO EXPERIMENTO
 
-# **Fluxograma – Mermaid**
-
-```mermaid
-flowchart TD
-    A[Início] --> B[Recepção e Consentimento]
-    B --> C[Questionário Demográfico]
-    C --> D[Treinamento do Participante]
-    D --> E[Tarefa 1: Compreensão]
-    E --> F[Questionário de Compreensão]
-    F --> G[Tarefa 2: Modificação]
-    G --> H[Execução dos Testes Automatizados]
-    H --> I[Tarefa 3: Correção de Bug]
-    I --> J[NASA-TLX + Questionário Final]
-    J --> K[Backup dos Dados]
-    K --> L[Fim da Sessão]
