@@ -151,17 +151,31 @@ Exemplos (lista completa estará na Parte 4):
 
 # 4. Escopo e Contexto do Experimento
 
-## 4.1 Escopo
-Inclui:
-- tarefas individuais  
-- uso de três versões de código  
-- tarefas de compreensão, modificação e correção  
-- coleta automática e subjetiva  
+## 4.1 Escopo 
 
-Exclui:
-- avaliação colaborativa  
-- análise longitudinal  
-- linguagens além de Python  
+> **Analyze** três versões funcionalmente equivalentes de um mesmo código-fonte  
+> **for the purpose of** avaliar e comparar  
+> **with respect to their** compreensão, manutenibilidade, esforço cognitivo e qualidade da modificação  
+> **from the point of view of the** pesquisador em Engenharia de Software  
+> **in the context of** um experimento controlado com tarefas individuais de manutenção de software, realizadas por estudantes, utilizando a linguagem Python.
+
+### Inclui
+- Tarefas **individuais** de manutenção de software  
+- Uso de **três versões distintas do mesmo código** (A, B e C)  
+- Execução de tarefas de:
+  - compreensão de código  
+  - modificação de código  
+  - correção de defeitos  
+- Coleta de dados por meio de:
+  - métricas objetivas (tempo, erros, acoplamento, complexidade, execuções de teste)  
+  - métricas subjetivas (NASA-TLX, esforço percebido, frustração)
+
+### Exclui
+- Avaliação colaborativa ou em grupo  
+- Análise longitudinal (efeitos de longo prazo)  
+- Uso de linguagens de programação diferentes de Python  
+- Avaliação em ambientes industriais ou com profissionais do mercado  
+
 
 ## 4.2 Contexto do Estudo
 Caracteriza-se como:
@@ -750,64 +764,119 @@ Categorias previstas:
 
 # 13. Avaliação de Validade
 
-## 13.1 Validade de Conclusão
-**Ameaças:**
-- Baixo poder estatístico  
-- Variabilidade de habilidade  
-- Erros instrumentais  
+Esta seção discute as principais ameaças à validade do experimento, considerando
+explicitamente o desenho adotado, o uso de três versões de código (A, B e C),
+as tarefas de manutenção (compreensão, modificação e correção) e as métricas
+objetivas e subjetivas coletadas.
 
-**Mitigações:**
-- Amostra mínima de 18  
-- Instrumentação redundante  
-- Análise de covariância se necessário  
+---
+
+## 13.1 Validade de Conclusão
+
+### Ameaças
+- **Baixo poder estatístico:**  
+  O experimento depende de uma amostra limitada de participantes (estudantes),
+  o que pode reduzir a capacidade de detectar diferenças estatisticamente
+  significativas entre as versões A, B e C, especialmente em métricas com alta
+  variabilidade, como tempo de execução e esforço percebido.
+  
+- **Variabilidade de habilidade entre participantes:**  
+  Diferenças individuais de experiência prévia com Python e manutenção de
+  software podem influenciar os resultados, mascarando ou amplificando efeitos
+  atribuídos à estrutura do código.
+
+- **Erros instrumentais:**  
+  Falhas na coleta automática de métricas (logs incompletos, falhas de registro
+  de tempo ou execuções de teste) podem comprometer a confiabilidade dos dados
+  quantitativos.
+
+### Mitigações
+- Definição de uma **amostra mínima de 18 participantes**, com balanceamento
+  entre as versões A, B e C.
+- Uso de **instrumentação redundante**, combinando logs automáticos,
+  registros de execução e questionários.
+- Aplicação de **ANOVA ou Kruskal-Wallis**, conforme a distribuição dos dados,
+  e uso de **análise de covariância** caso diferenças de experiência se mostrem
+  estatisticamente relevantes.
 
 ---
 
 ## 13.2 Validade Interna
-**Ameaças:**  
-- Fadiga  
-- Diferença prévia entre grupos  
-- Ambiente ruidoso  
 
-**Mitigações:**  
-- Sessões curtas  
-- Randomização completa  
-- Ambiente controlado  
+### Ameaças
+- **Fadiga:**  
+  Como cada participante executa três tarefas consecutivas (compreensão,
+  modificação e correção), existe o risco de queda de desempenho nas etapas finais,
+  afetando métricas como tempo e número de erros.
+
+- **Diferença prévia entre grupos:**  
+  Mesmo com randomização, grupos atribuídos às versões A, B ou C podem apresentar
+  diferenças iniciais de conhecimento ou familiaridade com o domínio do código.
+
+- **Ambiente ruidoso:**  
+  Interrupções, variações de hardware ou condições externas podem interferir no
+  desempenho durante a execução das tarefas.
+
+### Mitigações
+- Planejamento de **sessões com duração limitada**, evitando sobrecarga
+  prolongada.
+- **Randomização completa** da alocação dos participantes às versões A, B e C.
+- Execução do experimento em **ambiente controlado**, com instruções padronizadas
+  e condições equivalentes para todos os participantes.
 
 ---
 
 ## 13.3 Validade de Constructo
-**Ameaças:**  
-- Métrica não representar exatamente o construto  
-- Interpretação ambígua de perguntas  
 
-**Mitigações:**  
-- Uso do NASA-TLX  
-- Questionários pilotados  
+### Ameaças
+- **Métricas não representarem adequadamente os construtos avaliados:**  
+  Métricas como tempo, número de erros ou execuções de teste podem não capturar
+  completamente conceitos como compreensão ou manutenibilidade.
+
+- **Interpretação ambígua de perguntas subjetivas:**  
+  Questões relacionadas a esforço, frustração ou dificuldade podem ser
+  interpretadas de forma diferente pelos participantes.
+
+### Mitigações
+- Uso do **NASA-TLX**, um instrumento validado na literatura para medir carga
+  cognitiva e esforço percebido.
+- Realização de **questionários pilotados**, permitindo ajustes de linguagem e
+  clareza antes da execução definitiva do experimento.
+- Combinação de **métricas objetivas e subjetivas**, reduzindo dependência de um
+  único tipo de medida.
 
 ---
 
 ## 13.4 Validade Externa
-**Ameaças:**  
-- Código simples comparado à indústria  
-- Amostra acadêmica  
 
-**Mitigações:**  
-- Transparência no relatório  
-- Sugestão explícita de replicações futuras  
+### Ameaças
+- **Código simples em comparação a sistemas industriais:**  
+  O código utilizado no experimento é menor e menos complexo do que sistemas
+  reais, o que pode limitar a generalização dos resultados.
+
+- **Amostra acadêmica:**  
+  A utilização de estudantes como participantes pode não refletir o comportamento
+  de desenvolvedores profissionais em ambientes industriais.
+
+### Mitigações
+- Descrição clara dessas limitações no relatório final, evitando generalizações
+  indevidas.
+- **Sugestão explícita de replicações futuras** com profissionais e sistemas de
+  maior porte.
 
 ---
 
 ## 13.5 Tabela Resumo das Ameaças
 
-| Tipo | Ameaça | Risco | Mitigação |
-|------|---------|---------|------------|
-| Conclusão | Baixo poder | Médio | Aumento da amostra |
-| Interna | Fadiga | Alto | Sessões curtas |
-| Constructo | Questionários ambíguos | Médio | Piloto |
-| Externa | Código pequeno | Alto | Replicação |
+| Tipo        | Ameaça                                 | Risco | Mitigação Principal                          |
+|-------------|----------------------------------------|-------|----------------------------------------------|
+| Conclusão   | Baixo poder estatístico                | Médio | Amostra mínima e testes adequados            |
+| Conclusão   | Variabilidade de habilidade            | Médio | Randomização e covariância                   |
+| Interna     | Fadiga                                 | Alto  | Sessões curtas e controle de tempo           |
+| Interna     | Diferença prévia entre grupos          | Médio | Randomização completa                        |
+| Constructo  | Métricas não representativas           | Médio | NASA-TLX e métricas combinadas               |
+| Externa     | Código pequeno e amostra acadêmica     | Alto  | Transparência e replicações futuras          |
 
----
 
 # 14. Ética, Privacidade e Conformidade
 
